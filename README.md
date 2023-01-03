@@ -1,9 +1,7 @@
 ![Shivioua Background](./shivioua-background.png)
 
 ----
-
-DJ Sets
---------
+# DJ Sets
 
 * [**Progressive Awake**](https://hopbit.github.io/progressive-awake/) 
 * [**Fresh Dance Music**](http://hopbit.github.io/fresh-dance-music/) 
