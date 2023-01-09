@@ -5,7 +5,7 @@
 
 * [**Progressive Awake**](https://shivioua.github.io/progressive-awake/) 
 * [**Fresh Dance Music**](http://hopbit.github.io/fresh-dance-music/) 
-* [**Quantum Energy**](https://hopbit.github.io/quantum-energy/) 
+* [**Quantum Energy**](https://shivioua.github.io/quantum-energy/) 
 
 ----
 ### Links
