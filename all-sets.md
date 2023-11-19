@@ -62,7 +62,7 @@ Progressive Awake - It’s in my soul 2 (July 2008)
 -->
 
 * [**It’s in my soul (June 2008)**](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html)
-* [Primrose (April 2008)**](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html)
+* [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html)
 
 ----
 
