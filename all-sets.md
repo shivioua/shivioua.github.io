@@ -59,10 +59,10 @@ Progressive Awake - Nothing (January 2009)
 Progressive Awake - Just fly with me (December 2008)
 Progressive Awake - Love Paradox (August 2008)
 Progressive Awake - It’s in my soul 2 (July 2008)
-Progressive Awake - It’s in my soul (June 2008)
 -->
 
-* [**Primrose (April 2008)**](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html)
+* [**It’s in my soul (June 2008)**](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html)
+* [Primrose (April 2008)**](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html)
 
 ----
 
