@@ -9,12 +9,11 @@
 ----
 # DJ Mixes
 
+* [**All mixes**](./all-sets.md) 
 * [**Progressive Awake**](https://shivioua.github.io/progressive-awake/) 
 * [**Fresh Dance Music**](http://shivioua.github.io/fresh-dance-music/) 
 * [**Quantum Energy**](https://shivioua.github.io/quantum-energy/) 
-  
-  
-* [**Archive with all mixes**](./all-sets.md)
+
 
 ----
 ### Links
