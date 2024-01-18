@@ -67,9 +67,9 @@ Listed from the newest to the oldest.
 * Progressive Awake - Hard days at work (April 2009)
 * Progressive Awake - When I am overtaken by… (April 2009)
 * Progressive Awake - Sweet candies (March 2009)
-* Progressive Awake - Discovering myself with You (March 2009)
 -->
-* [**Nothing (January 2009)**](https://shivioua.github.io/progressive-awake/nothing-january-2009.html)
+* [**Discovering myself with You (March 2009)**](https://shivioua.github.io/progressive-awake/discovering-myself-with-you-march-2009.html)
+* [Nothing (January 2009)](https://shivioua.github.io/progressive-awake/nothing-january-2009.html)
 * [Just fly with me (December 2008)](https://shivioua.github.io/progressive-awake/just-fly-with-me-december-2008.html)
 * [Love Paradox (August 2008)](https://shivioua.github.io/progressive-awake/love-paradox-august-2008.html)
 * [It’s in my soul 2 (July 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-2-july-2008.html)
