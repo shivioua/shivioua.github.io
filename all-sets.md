@@ -65,9 +65,9 @@ Listed from the newest to the oldest.
 * Progressive Awake - Holidays Wanted!!! (June 2009)
 * Progressive Awake - Midgard (May 2009)
 * Progressive Awake - Hard days at work (April 2009)
-* Progressive Awake - When I am overtaken by... (April 2009)
 -->
-* [**Sweet candies (March 2009)**](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html)
+* [**When I am overtaken by... (April 2009)**](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html)
+* [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html)
 * [Discovering myself with You (March 2009)](https://shivioua.github.io/progressive-awake/discovering-myself-with-you-march-2009.html)
 * [Nothing (January 2009)](https://shivioua.github.io/progressive-awake/nothing-january-2009.html)
 * [Just fly with me (December 2008)](https://shivioua.github.io/progressive-awake/just-fly-with-me-december-2008.html)
