@@ -6,6 +6,7 @@
 Listed from the newest to the oldest.
 
 <!-- 
+* [**Backstreet Bar (August 2024)**](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html)
 * Progressive Awake - Poljica (August 2023)
 * Progressive Awake - Faixa Azul (June 2023)
 * Progressive Awake - Rebalancing (Decebmer 2022)
@@ -66,7 +67,8 @@ Listed from the newest to the oldest.
 * Progressive Awake - Midgard (May 2009)
 * Progressive Awake - Hard days at work (April 2009)
 -->
-* [**Backstreet Bar (August 2024)**](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html)
+
+* [**Hard days at work (April 2009)**](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html)
 * [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html)
 * [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html)
 * [Discovering myself with You (March 2009)](https://shivioua.github.io/progressive-awake/discovering-myself-with-you-march-2009.html)
