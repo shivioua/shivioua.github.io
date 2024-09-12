@@ -18,7 +18,7 @@
 ----
 ### Links
 
-* Listen and watch on: [YouTube](https://www.youtube.com/@shivioua), [SoundCloud](https://soundcloud.com/shivioua/tracks), [MixCloud](https://www.mixcloud.com/shivioua/), [Spotify](https://open.spotify.com/user/hopbit)
+* Listen and watch on: [YouTube](https://www.youtube.com/@shivioua), [SoundCloud](https://soundcloud.com/shivioua), [MixCloud](https://www.mixcloud.com/shivioua/reposts/), [Spotify](https://open.spotify.com/user/hopbit)
 * Social Media: [Facebook](https://www.facebook.com/shivioua/), [Instagram](https://www.instagram.com/shivioua/), [TikTok](https://www.tiktok.com/@shivioua), [GitHub](https://github.com/shivioua), [Discogs](https://www.discogs.com/user/shivioua), [Linktree](https://linktr.ee/shivioua), [Last.FM](https://www.last.fm/pl/user/shivioua), [About Me](https://about.me/shivioua/)
  ,   [Twitter](https://twitter.com/shivioua), [Wordpress](https://shivioua.wordpress.com/)
 * Support me: [PayPalMe](https://paypal.me/shivioua), [Patreon](https://www.patreon.com/shivioua), [BuyMeACoffe](https://www.buymeacoffee.com/shivioua)
