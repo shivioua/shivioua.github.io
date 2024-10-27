@@ -63,11 +63,10 @@ Listed from the newest to the oldest.
 * Progressive Awake - Opium (July 2009)
 * Progressive Awake - 7 months of dream (July 2009)
 * Progressive Awake - Effervescence (June 2009)
-* Progressive Awake - Holidays Wanted!!! (June 2009)
-
 -->
 
-* [**Midgard (May 2009)**](https://shivioua.github.io/progressive-awake/midgard-may-2009.html)  
+* [**Holidays Wanted!!! (June 2009)**](https://shivioua.github.io/progressive-awake/holidays-wanted-june-2009.html)  
+* [Midgard (May 2009)**](https://shivioua.github.io/progressive-awake/midgard-may-2009.html)  
 * [Hard days at work (April 2009)](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html)
 * [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html)
 * [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html)
