@@ -22,7 +22,6 @@ Listed from the newest to the oldest.
 * Progressive Awake - Hypnotized By Your Light (February 2021)
 * Progressive Awake - The Blue Oyster (January 2021)
 * Fresh Dance Music - Izolatorium (November 2020)
-* Fresh Dance Music - Przed Duszki (October 2020)
 * Progressive Awake - La Playa (July 2020)
 * Quantum Energy - Vinylegg (August 2020)
 * Quantum Energy - Two Hearts (August 2018)
@@ -66,7 +65,7 @@ Listed from the newest to the oldest.
 -->
 
 * [**Holidays Wanted!!! (June 2009)**](https://shivioua.github.io/progressive-awake/holidays-wanted-june-2009.html)  
-* [Midgard (May 2009)**](https://shivioua.github.io/progressive-awake/midgard-may-2009.html)  
+* [Midgard (May 2009)](https://shivioua.github.io/progressive-awake/midgard-may-2009.html)  
 * [Hard days at work (April 2009)](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html)
 * [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html)
 * [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html)
