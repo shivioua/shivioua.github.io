@@ -21,7 +21,6 @@ Listed from the newest to the oldest.
 * Quantum Energy - Counter Plus Plus (March 2021)
 * Progressive Awake - Hypnotized By Your Light (February 2021)
 * Progressive Awake - The Blue Oyster (January 2021)
-* Fresh Dance Music - Izolatorium (November 2020)
 * Progressive Awake - La Playa (July 2020)
 * Quantum Energy - Vinylegg (August 2020)
 * Quantum Energy - Two Hearts (August 2018)
