@@ -2,12 +2,6 @@
 
 ----
 
-# Music 
-
-* [**All tracks**](./all-tracks.md) 
-* [**Remixes and Live Coding Sessions**](https://shivioua.github.io/music/) 
-
-----
 # DJ Mixes
 
 * [**All mixes**](./all-sets.md) 
@@ -15,6 +9,12 @@
 * [**Fresh Dance Music**](http://shivioua.github.io/fresh-dance-music/) 
 * [**Quantum Energy**](https://shivioua.github.io/quantum-energy/) 
 
+----
+
+# Music 
+
+* [**All tracks**](./all-tracks.md) 
+* [**Remixes and Live Coding Sessions**](https://shivioua.github.io/music/) 
 
 ----
 ### Links
