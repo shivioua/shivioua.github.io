@@ -262,7 +262,7 @@ func main() {
 		}
 		// Output in requested markdown style, only add plays info if plays > 0
 		if plays > 0 {
-			fmt.Printf("* [%s](%s) _// 🎶%d_\n", setNames[i], link, plays)
+			fmt.Printf("* [%s](%s) _[%d🎶]_\n", setNames[i], link, plays)
 		} else {
 			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 		}
