@@ -254,6 +254,7 @@ func main() {
 		return
 	}
 	debugLog("[DEBUG] Processing %d sets\n", len(setLinks))
+	totalPlays := 0
 	for i, link := range setLinks {
 		// debugLog("[DEBUG] Processing set %d: %s (%s)\n", i+1, setNames[i], link)
 		page, err := fetchURL(link)
@@ -271,6 +272,7 @@ func main() {
 		if youtube != "" {
 			plays += getYouTubePlays(youtube)
 		}
+		totalPlays += plays
 		// Output in requested markdown style, only add plays info if plays > 0
 		if plays > 0 {
 			fmt.Printf("* [%s](%s) _//_ %d🎶\n", setNames[i], link, plays)
@@ -278,4 +280,5 @@ func main() {
 			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 		}
 	}
+	fmt.Printf("\nTotal plays count: **%d🎶**\n", totalPlays)
 }

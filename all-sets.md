@@ -64,6 +64,8 @@
 * [It’s in my soul (June 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html) _//_ 9🎶
 * [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 32🎶
 
+Total plays: **781🎶**
+
 ----
 
 [Back to main page](https://shivioua.github.io)
