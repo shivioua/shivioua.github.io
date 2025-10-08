@@ -7,21 +7,21 @@
 
 * [**Backstreet Bar (August 2024)**](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html)
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 5🎶
-* Faixa Azul (June 2023) _NOT PUBLISHED YET_
-* Rebalancing (Decebmer 2022) _NOT PUBLISHED YET_
+* Faixa Azul (June 2023) _// NOT PUBLISHED YET_
+* Rebalancing (Decebmer 2022) _// NOT PUBLISHED YET_
 * [Lullaby (December 2021)](https://shivioua.github.io/progressive-awake/lullaby-december-2021.html) _//_ 24🎶
 * [Somebody New Vol. 3 (November 2021)](https://shivioua.github.io/progressive-awake/somebody-new-vol-3-november-2021.html) _//_ 14🎶
 * [New Time, Same Place (August 2021)](https://shivioua.github.io/fresh-dance-music/new-time-same-place-august-2021.html) _//_ 11🎶
 * [Modern Rock & Roll (July 2021)](https://shivioua.github.io/quantum-energy/modern-rock-and-roll-july-2021.html) _//_ 14🎶
 * [Lick The Groove (May 2021)](https://shivioua.github.io/quantum-energy/lick-the-groove-may-2010.html) _//_ 22🎶
 * [Rzepedka (April 2021)](https://shivioua.github.io/fresh-dance-music/rzepedka-april-2021.html) _//_ 16🎶
-* Tribute to CDQ Burakowsa (April 2021) _NOT PUBLISHED YET_
+* Tribute to CDQ Burakowsa (April 2021) _// NOT PUBLISHED YET_
 * [Bit Harder (April 2021)](https://shivioua.github.io/progressive-awake/bit-harder-april-2021.html) _//_ 18🎶
 * [Counter Plus Plus (March 2021)](https://shivioua.github.io/quantum-energy/counter-plus-plus-march-2021.html) _//_ 14🎶
 * [Hypnotized By Your Light (February 2021)](https://shivioua.github.io/progressive-awake/hypnotized-by-your-light-february-2021.html) _//_ 34🎶
 * [The Blue Oyster (January 2021)](https://shivioua.github.io/progressive-awake/the-blue-oyster-january-2021.html) _//_ 16🎶
 * [La Playa (July 2020)](https://shivioua.github.io/progressive-awake/la-playa-july-2020.html) _//_ 10🎶
-* Vinylegg (August 2020) _NOT PUBLISHED YET_
+* Vinylegg (August 2020) _// NOT PUBLISHED YET_
 * [Two Hearts (August 2018)](https://shivioua.github.io/quantum-energy/two-hearts__august-2018.html) _//_ 25🎶
 * [Beachball (July 2018)](https://shivioua.github.io/fresh-dance-music/beachball-july-2018.html) _//_ 29🎶
 * [New Time, New Place (June 2018)](https://shivioua.github.io/progressive-awake/new-time-new-place-june-2018.html) _//_ 33🎶
