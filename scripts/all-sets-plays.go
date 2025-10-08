@@ -226,10 +226,14 @@ func getYouTubePlays(ytURL string) int {
 
 // Find external links in set page (Mixcloud, SoundCloud, YouTube)
 func findExternalLinks(page string) (mixcloud, soundcloud, youtube string) {
+	// debugLog("[DEBUG] Finding external links in page\n")
+	// debugLog("[DEBUG] Page content: %s...\n", page) // Print first 100 chars for debugging")
 	mixcloudRe := regexp.MustCompile(`https://www.mixcloud.com/[^"]+`)
+	debugLog("[DEBUG] mixcloudRe: %v\n", mixcloudRe)
 	soundcloudRe := regexp.MustCompile(`https://soundcloud.com/[^"]+`)
 	youtubeRe := regexp.MustCompile(`https://(www\.)?youtube.com/[^"]+|https://youtu.be/[^"]+`)
 	if m := mixcloudRe.FindString(page); m != "" {
+		debugLog("[DEBUG] Found Mixcloud link: %s\n", m)
 		mixcloud = m
 	}
 	if s := soundcloudRe.FindString(page); s != "" {
