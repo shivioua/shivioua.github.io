@@ -4,6 +4,7 @@
 
 # Music 
 
+* [**All tracks**](./all-tracks.md) 
 * [**Remixes and Live Coding Sessions**](https://shivioua.github.io/music/) 
 
 ----
