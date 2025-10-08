@@ -1,9 +1,9 @@
 
 ![Shivioua - All Sets](./all-sets.jpg)
 
-# All Sets
+# All Sets (DJ Mixes)
 
-Listed from the newest to the oldest.
+58 sets in total, listed from the newest to the oldest, including:
 
 * [**Backstreet Bar (August 2024)**](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html)
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html)
