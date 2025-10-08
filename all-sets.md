@@ -66,7 +66,7 @@
 
 Total plays: **781🎶**
 
-Thank you for listening 😍
+Thank you for listening my sets 😍 
 
 ----
 
