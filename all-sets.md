@@ -66,6 +66,8 @@
 
 Total plays: **781🎶**
 
+Thank you for listening 😍
+
 ----
 
 [Back to main page](https://shivioua.github.io)
