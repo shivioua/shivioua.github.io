@@ -260,7 +260,11 @@ func main() {
 		if youtube != "" {
 			plays += getYouTubePlays(youtube)
 		}
-		// Output in requested markdown style
-		fmt.Printf("* [%s](%s) _/plays: %d/_\n", setNames[i], link, plays)
+		// Output in requested markdown style, only add plays info if plays > 0
+		if plays > 0 {
+			fmt.Printf("* [%s](%s) _/mixcloud plays: %d/_\n", setNames[i], link, plays)
+		} else {
+			fmt.Printf("* [%s](%s)\n", setNames[i], link)
+		}
 	}
 }
