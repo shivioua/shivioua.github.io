@@ -17,11 +17,18 @@ import (
 )
 
 var debug_on = false
+var info_on = false
 var warn_on = false
 
 // Helper to print debug logs only if debug_on is true
 func debugLog(format string, a ...interface{}) {
 	if debug_on {
+		fmt.Printf(format, a...)
+	}
+}
+
+func infoLog(format string, a ...interface{}) {
+	if info_on {
 		fmt.Printf(format, a...)
 	}
 }
@@ -231,7 +238,7 @@ func findExternalLinks(page string) (mixcloud, soundcloud, youtube string) {
 	if y := youtubeRe.FindString(page); y != "" {
 		youtube = y
 	}
-	debugLog("[DEBUG] External links found - Mixcloud: %s, SoundCloud: %s, YouTube: %s\n", mixcloud, soundcloud, youtube)
+	infoLog("[INFO] External links found - Mixcloud: %s, SoundCloud: %s, YouTube: %s\n", mixcloud, soundcloud, youtube)
 	return
 }
 
