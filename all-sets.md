@@ -26,9 +26,9 @@
 * [Beachball (July 2018)](https://shivioua.github.io/fresh-dance-music/beachball-july-2018.html) _//_ 29🎶
 * [New Time, New Place (June 2018)](https://shivioua.github.io/progressive-awake/new-time-new-place-june-2018.html) _//_ 33🎶
 * [Playpool (September 2016)](https://shivioua.github.io/progressive-awake/playpool-september-2016.html) _//_ 36🎶
-* [Somebody New (November 2015)](https://shivioua.github.io/fresh-dance-music/somebody-new-november-2015.html)
+* [Somebody New (November 2015)](https://shivioua.github.io/fresh-dance-music/somebody-new-november-2015.html) _//_ 39🎶
 * [Uncharted Waters (June 2015)](https://shivioua.github.io/progressive-awake/uncharted-waters-june-2015.html)
-* [Cave (January 2015)](https://shivioua.github.io/fresh-dance-music/cave-january-2015.html)
+* [Cave (January 2015)](https://shivioua.github.io/fresh-dance-music/cave-january-2015.html) _//_ 48🎶
 * [Deanery No. 161 (May 2014)](https://shivioua.github.io/fresh-dance-music/deanery-no-161-may-2014.html) _//_ 51🎶
 * [Spring is in the air (March 2014)](https://shivioua.github.io/progressive-awake/spring-is-in-the-air-march-2014.html) _//_ 2🎶
 * [Winter solstice (December 2012)](https://shivioua.github.io/quantum-energy/winter-solstice-december-2012.html) _//_ 27🎶
@@ -62,7 +62,7 @@
 * [Love Paradox (August 2008)](https://shivioua.github.io/progressive-awake/love-paradox-august-2008.html) _//_ 5🎶
 * [It’s in my soul 2 (July 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-2-july-2008.html) _//_ 2🎶
 * [It’s in my soul (June 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html) _//_ 9🎶
-* [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html)
+* [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 32🎶
 
 ----
 
