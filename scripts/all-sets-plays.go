@@ -17,25 +17,10 @@ import (
 )
 
 var debug_on = false
-var info_on = false
-var warn_on = false
 
 // Helper to print debug logs only if debug_on is true
 func debugLog(format string, a ...interface{}) {
 	if debug_on {
-		fmt.Printf(format, a...)
-	}
-}
-
-func infoLog(format string, a ...interface{}) {
-	if info_on {
-		fmt.Printf(format, a...)
-	}
-}
-
-// Helper to print debug logs only if debug_on is true
-func warnLog(format string, a ...interface{}) {
-	if warn_on {
 		fmt.Printf(format, a...)
 	}
 }
@@ -122,7 +107,7 @@ func getSoundcloudPlays(scURL string) int {
 	debugLog("[DEBUG] getSoundcloudPlays called with URL: %s\n", scURL)
 	clientID := os.Getenv("SOUNDCLOUD_CLIENT_ID")
 	if clientID == "" {
-		warnLog("[WARN] SoundCloud client ID not set in environment. Skipping.\n")
+		debugLog("[WARN] SoundCloud client ID not set in environment. Skipping.\n")
 		return 0
 	}
 	// Step 1: Resolve the track to get the API resource
@@ -242,7 +227,7 @@ func findExternalLinks(page string) (mixcloud, soundcloud, youtube string) {
 	if y := youtubeRe.FindString(page); y != "" {
 		youtube = y
 	}
-	infoLog("[INFO] External links found - Mixcloud: %s, SoundCloud: %s, YouTube: %s\n", mixcloud, soundcloud, youtube)
+	debugLog("[DEBUG] External links found - Mixcloud: %s, SoundCloud: %s, YouTube: %s\n", mixcloud, soundcloud, youtube)
 	return
 }
 
