@@ -246,6 +246,18 @@ func findExternalLinks(page string) (mixcloud, soundcloud, youtube string) {
 	return
 }
 
+// Format play count with "k" for thousands, "M" for millions, etc.
+func formatPlays(n int) string {
+	switch {
+	case n >= 1_000_000:
+		return fmt.Sprintf("%.1fM", float64(n)/1_000_000)
+	case n >= 1_000:
+		return fmt.Sprintf("%.1fk", float64(n)/1_000)
+	default:
+		return fmt.Sprintf("%d", n)
+	}
+}
+
 func main() {
 	debugLog("[DEBUG] Starting all-sets-plays.go")
 	setNames, setLinks, err := extractSetLinks("../all-sets.md")
@@ -280,5 +292,5 @@ func main() {
 			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 		}
 	}
-	fmt.Printf("\nTotal plays count: **%d🎶**\n", totalPlays)
+	fmt.Printf("\nTotal plays: **%s🎶**\n", formatPlays(totalPlays))
 }
