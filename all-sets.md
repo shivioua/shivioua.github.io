@@ -51,7 +51,7 @@
 * [Opium (July 2009)](https://shivioua.github.io/progressive-awake/opium-july-2009.html) _//_ 2🎶
 * [7 months of dream (July 2009)](https://shivioua.github.io/progressive-awake/7-months-of-dream-dont-want-to-wake-up-july-2009.html) _//_ 12🎶
 * [Effervescence (June 2009)](https://shivioua.github.io/progressive-awake/effervescence-june-2009.html) _//_ 1🎶
-* [Lobotomia (June 2009)](https://shivioua.github.io/progressive-awake/lobotomia-june-2009.html)
+* [Lobotomia (June 2009)](https://shivioua.github.io/progressive-awake/lobotomia-june-2009.html) _//_ 100🎶
 * [Midgard (May 2009)](https://shivioua.github.io/progressive-awake/midgard-may-2009.html) _//_ 57🎶
 * [Hard days at work (April 2009)](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html) _//_ 340🎶
 * [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html) _//_ 233🎶
@@ -64,7 +64,7 @@
 * [It’s in my soul (June 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html) _//_ 98🎶
 * [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 156🎶
 
-Total plays: **2.8k🎶**
+Total plays: **2.9k🎶**
 
 Thank you for listening 😍
 
