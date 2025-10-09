@@ -5,8 +5,8 @@
 
 58 sets in total, listed from the newest to the oldest, including:
 
-* [**Backstreet Bar (August 2024)**](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html)
-* [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 5🎶
+* [**Backstreet Bar (August 2024)**](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 119🎶
+* [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 532🎶
 * Faixa Azul (June 2023) _// NOT PUBLISHED YET_
 * Rebalancing (Decebmer 2022) _// NOT PUBLISHED YET_
 * [Lullaby (December 2021)](https://shivioua.github.io/progressive-awake/lullaby-december-2021.html) _//_ 24🎶
@@ -27,7 +27,7 @@
 * [New Time, New Place (June 2018)](https://shivioua.github.io/progressive-awake/new-time-new-place-june-2018.html) _//_ 33🎶
 * [Playpool (September 2016)](https://shivioua.github.io/progressive-awake/playpool-september-2016.html) _//_ 36🎶
 * [Somebody New (November 2015)](https://shivioua.github.io/fresh-dance-music/somebody-new-november-2015.html) _//_ 39🎶
-* [Uncharted Waters (June 2015)](https://shivioua.github.io/progressive-awake/uncharted-waters-june-2015.html)
+* [Uncharted Waters (June 2015)](https://shivioua.github.io/progressive-awake/uncharted-waters-june-2015.html) _//_ 40🎶
 * [Cave (January 2015)](https://shivioua.github.io/fresh-dance-music/cave-january-2015.html) _//_ 48🎶
 * [Deanery No. 161 (May 2014)](https://shivioua.github.io/fresh-dance-music/deanery-no-161-may-2014.html) _//_ 51🎶
 * [Spring is in the air (March 2014)](https://shivioua.github.io/progressive-awake/spring-is-in-the-air-march-2014.html) _//_ 2🎶
@@ -52,19 +52,19 @@
 * [7 months of dream (July 2009)](https://shivioua.github.io/progressive-awake/7-months-of-dream-dont-want-to-wake-up-july-2009.html) _//_ 12🎶
 * [Effervescence (June 2009)](https://shivioua.github.io/progressive-awake/effervescence-june-2009.html) _//_ 1🎶
 * [Lobotomia (June 2009)](https://shivioua.github.io/progressive-awake/lobotomia-june-2009.html)
-* [Midgard (May 2009)](https://shivioua.github.io/progressive-awake/midgard-may-2009.html) _//_ 15🎶
-* [Hard days at work (April 2009)](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html)
-* [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html) _//_ 25🎶
-* [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html) _//_ 5🎶
-* [Discovering myself with You (March 2009)](https://shivioua.github.io/progressive-awake/discovering-myself-with-you-march-2009.html) _//_ 2🎶
-* [Nothing (January 2009)](https://shivioua.github.io/progressive-awake/nothing-january-2009.html) _//_ 4🎶
-* [Just fly with me (December 2008)](https://shivioua.github.io/progressive-awake/just-fly-with-me-december-2008.html) _//_ 21🎶
-* [Love Paradox (August 2008)](https://shivioua.github.io/progressive-awake/love-paradox-august-2008.html) _//_ 5🎶
-* [It’s in my soul 2 (July 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-2-july-2008.html) _//_ 2🎶
-* [It’s in my soul (June 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html) _//_ 9🎶
-* [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 32🎶
+* [Midgard (May 2009)](https://shivioua.github.io/progressive-awake/midgard-may-2009.html) _//_ 57🎶
+* [Hard days at work (April 2009)](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html) _//_ 340🎶
+* [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html) _//_ 233🎶
+* [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html) _//_ 53🎶
+* [Discovering myself with You (March 2009)](https://shivioua.github.io/progressive-awake/discovering-myself-with-you-march-2009.html) _//_ 64🎶
+* [Nothing (January 2009)](https://shivioua.github.io/progressive-awake/nothing-january-2009.html) _//_ 111🎶
+* [Just fly with me (December 2008)](https://shivioua.github.io/progressive-awake/just-fly-with-me-december-2008.html) _//_ 223🎶
+* [Love Paradox (August 2008)](https://shivioua.github.io/progressive-awake/love-paradox-august-2008.html) _//_ 55🎶
+* [It’s in my soul 2 (July 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-2-july-2008.html) _//_ 53 🎶
+* [It’s in my soul (June 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html) _//_ 98🎶
+* [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 156🎶
 
-Total plays: **781🎶**
+Total plays: **113.7k🎶**
 
 Thank you for listening 😍
 
