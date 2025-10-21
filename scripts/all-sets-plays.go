@@ -14,6 +14,9 @@ import (
 	"net/url"
 	"os"
 	"regexp"
+	"sort"
+	"strconv"
+	"strings"
 )
 
 var debug_on = false
@@ -243,7 +246,52 @@ func formatPlays(n int) string {
 	}
 }
 
+// printSortedSets reads all-sets.md, collects lines that start with "* ", extracts play counts (digits before 🎶 if present),
+// sorts entries by plays descending and prints them to stdout.
+func printSortedSets(path string) error {
+	data, err := ioutil.ReadFile(path)
+	if err != nil {
+		return err
+	}
+	lines := strings.Split(string(data), "\n")
+	type entry struct {
+		line  string
+		plays int
+	}
+	var entries []entry
+	rePlays := regexp.MustCompile(`([0-9]+)🎶`)
+	for _, ln := range lines {
+		trim := strings.TrimSpace(ln)
+		if !strings.HasPrefix(trim, "* ") {
+			continue
+		}
+		plays := 0
+		if m := rePlays.FindStringSubmatch(trim); len(m) == 2 {
+			if v, err := strconv.Atoi(m[1]); err == nil {
+				plays = v
+			}
+		}
+		entries = append(entries, entry{line: trim, plays: plays})
+	}
+	sort.Slice(entries, func(i, j int) bool {
+		return entries[i].plays > entries[j].plays
+	})
+	for _, e := range entries {
+		fmt.Println(e.line)
+	}
+	return nil
+}
+
 func main() {
+	// if invoked as: go run all-sets-plays.go sort
+	if len(os.Args) > 1 && os.Args[1] == "sort" {
+		if err := printSortedSets("../all-sets.md"); err != nil {
+			fmt.Println("Error:", err)
+			os.Exit(1)
+		}
+		return
+	}
+
 	debugLog("[DEBUG] Starting all-sets-plays.go")
 	setNames, setLinks, err := extractSetLinks("../all-sets.md")
 	if err != nil {
