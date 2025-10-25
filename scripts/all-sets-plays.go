@@ -59,16 +59,23 @@ func extractSetLinks(filename string) ([]string, []string, error) {
 	var links []string
 	re := regexp.MustCompile(`\* \[(.*?)\]\((.*?)\)`) // Markdown link
 	scanner := bufio.NewScanner(file)
+	seen := make(map[string]bool)
 	for scanner.Scan() {
 		line := scanner.Text()
 		match := re.FindStringSubmatch(line)
 		if len(match) == 3 {
-			debugLog("[DEBUG] Found set: %s (%s)\n", match[1], match[2])
+			link := match[2]
+			if seen[link] {
+				// skip duplicate occurrences of the same link
+				continue
+			}
+			seen[link] = true
+			debugLog("[DEBUG] Found set: %s (%s)\n", match[1], link)
 			names = append(names, match[1])
-			links = append(links, match[2])
+			links = append(links, link)
 		}
 	}
-	debugLog("[DEBUG] Extracted %d sets\n", len(names))
+	debugLog("[DEBUG] Extracted %d unique sets\n", len(names))
 	return names, links, nil
 }
 
@@ -108,51 +115,182 @@ func getMixcloudPlays(mixcloudURL string) int {
 }
 func getSoundcloudPlays(scURL string) int {
 	debugLog("[DEBUG] getSoundcloudPlays called with URL: %s\n", scURL)
-	clientID := os.Getenv("SOUNDCLOUD_CLIENT_ID")
-	if clientID == "" {
-		debugLog("[WARN] SoundCloud client ID not set in environment. Skipping.\n")
-		return 0
-	}
-	// Step 1: Resolve the track to get the API resource
-	resolveAPI := fmt.Sprintf("https://api.soundcloud.com/resolve?url=%s&client_id=%s", url.QueryEscape(scURL), clientID)
-	debugLog("[DEBUG] Resolving SoundCloud URL: %s\n", resolveAPI)
-	resp, err := http.Get(resolveAPI)
-	if err != nil {
-		debugLog("[DEBUG] Error resolving SoundCloud URL: %v\n", err)
-		return 0
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != 302 && resp.StatusCode != 200 {
-		debugLog("[DEBUG] SoundCloud resolve returned status: %d\n", resp.StatusCode)
-		return 0
-	}
-	var trackData struct {
-		ID            int `json:"id"`
-		PlaybackCount int `json:"playback_count"`
-	}
-	// If 302, follow redirect to get track info
-	if resp.StatusCode == 302 {
-		location := resp.Header.Get("Location")
-		debugLog("[DEBUG] Redirected to: %s\n", location)
-		resp2, err := http.Get(location + "?client_id=" + clientID)
-		if err != nil {
-			debugLog("[DEBUG] Error fetching redirected SoundCloud track: %v\n", err)
-			return 0
+
+	// 1) Prefer explicit OAuth token in env
+	oauthToken := os.Getenv("SOUNDCLOUD_OAUTH_TOKEN")
+	if oauthToken != "" {
+		debugLog("[DEBUG] Using SOUNDCLOUD_OAUTH_TOKEN\n")
+		if plays, ok := resolveSoundCloudWithToken(scURL, oauthToken); ok {
+			return plays
 		}
-		defer resp2.Body.Close()
-		if err := json.NewDecoder(resp2.Body).Decode(&trackData); err != nil {
-			debugLog("[DEBUG] Error decoding SoundCloud track response: %v\n", err)
-			return 0
+		debugLog("[WARN] SoundCloud OAuth token request failed, will try other methods\n")
+	}
+
+	// 2) Try to obtain a token from client_id + client_secret (if provided)
+	clientID := os.Getenv("SOUNDCLOUD_CLIENT_ID")
+	clientSecret := os.Getenv("SOUNDCLOUD_CLIENT_SECRET")
+	if clientID != "" && clientSecret != "" {
+		debugLog("[DEBUG] Attempting OAuth token exchange with client_id+client_secret\n")
+		tokenURL := "https://api.soundcloud.com/oauth2/token"
+		form := url.Values{
+			"client_id":     {clientID},
+			"client_secret": {clientSecret},
+			"grant_type":    {"client_credentials"},
+		}
+		resp, err := http.PostForm(tokenURL, form)
+		if err != nil {
+			debugLog("[ERROR] Error requesting SoundCloud token: %v\n", err)
+		} else {
+			defer resp.Body.Close()
+			if resp.StatusCode == 200 {
+				var tok struct {
+					AccessToken string `json:"access_token"`
+				}
+				if err := json.NewDecoder(resp.Body).Decode(&tok); err == nil && tok.AccessToken != "" {
+					debugLog("[DEBUG] Obtained SoundCloud OAuth token via client credentials\n")
+					if plays, ok := resolveSoundCloudWithToken(scURL, tok.AccessToken); ok {
+						return plays
+					}
+					debugLog("[WARN] SoundCloud resolve with obtained token failed, will try client_id resolve or HTML fallback\n")
+				} else {
+					debugLog("[DEBUG] Token exchange decode error or empty token: %v\n", err)
+				}
+			} else {
+				debugLog("[DEBUG] Token endpoint returned status: %d\n", resp.StatusCode)
+			}
 		}
 	} else {
-		if err := json.NewDecoder(resp.Body).Decode(&trackData); err != nil {
-			debugLog("[DEBUG] Error decoding SoundCloud resolve response: %v\n", err)
-			return 0
+		debugLog("[ERROR] SOUNDCLOUD_CLIENT_ID or SOUNDCLOUD_CLIENT_SECRET not set, skipping token exchange\n")
+	}
+
+	// 3) If client_id available, try legacy resolve?client_id=... (may return 401)
+	if clientID != "" {
+		resolveAPI := fmt.Sprintf("https://api.soundcloud.com/resolve?url=%s&client_id=%s", url.QueryEscape(scURL), clientID)
+		debugLog("[DEBUG] Resolving SoundCloud URL (client_id): %s\n", resolveAPI)
+		resp, err := http.Get(resolveAPI)
+		if err == nil {
+			defer resp.Body.Close()
+			if resp.StatusCode == 200 {
+				var trackData struct {
+					ID            int `json:"id"`
+					PlaybackCount int `json:"playback_count"`
+				}
+				if err := json.NewDecoder(resp.Body).Decode(&trackData); err == nil {
+					debugLog("[DEBUG] SoundCloud playback_count (API client_id): %d\n", trackData.PlaybackCount)
+					return trackData.PlaybackCount
+				}
+			}
+			if resp.StatusCode == 302 {
+				location := resp.Header.Get("Location")
+				debugLog("[DEBUG] Redirected to: %s\n", location)
+				resp2, err := http.Get(location + "?client_id=" + clientID)
+				if err == nil {
+					defer resp2.Body.Close()
+					var trackData struct {
+						ID            int `json:"id"`
+						PlaybackCount int `json:"playback_count"`
+					}
+					if err := json.NewDecoder(resp2.Body).Decode(&trackData); err == nil {
+						debugLog("[DEBUG] SoundCloud playback_count (API redirect): %d\n", trackData.PlaybackCount)
+						return trackData.PlaybackCount
+					}
+				}
+			}
+			if resp.StatusCode == 401 {
+				debugLog("[WARN] SoundCloud resolve returned 401 (invalid client_id). Will fall back to HTML parsing\n")
+			} else {
+				debugLog("[DEBUG] SoundCloud resolve returned status: %d\n", resp.StatusCode)
+			}
+		} else {
+			debugLog("[DEBUG] Error resolving SoundCloud URL with client_id: %v\n", err)
 		}
 	}
-	debugLog("[DEBUG] SoundCloud playback_count: %d\n", trackData.PlaybackCount)
-	return trackData.PlaybackCount
+
+	// 4) HTML fallback: fetch the SoundCloud page and try to extract playback_count from embedded JSON
+	debugLog("[DEBUG] Fetching SoundCloud page for HTML fallback: %s\n", scURL)
+	respPage, err := http.Get(scURL)
+	if err != nil {
+		debugLog("[DEBUG] Error fetching SoundCloud page: %v\n", err)
+		return 0
+	}
+	defer respPage.Body.Close()
+	body, err := ioutil.ReadAll(respPage.Body)
+	if err != nil {
+		debugLog("[DEBUG] Error reading SoundCloud page body: %v\n", err)
+		return 0
+	}
+	re := regexp.MustCompile(`"playback_count"\s*:\s*([0-9]+)`)
+	if m := re.FindSubmatch(body); len(m) == 2 {
+		if v, err := strconv.Atoi(string(m[1])); err == nil {
+			debugLog("[DEBUG] SoundCloud playback_count (HTML fallback): %d\n", v)
+			return v
+		}
+	}
+	re2 := regexp.MustCompile(`playback_count\s*:\s*([0-9]+)`)
+	if m := re2.FindSubmatch(body); len(m) == 2 {
+		if v, err := strconv.Atoi(string(m[1])); err == nil {
+			debugLog("[DEBUG] SoundCloud playback_count (HTML fallback alt): %d\n", v)
+			return v
+		}
+	}
+	debugLog("[WARN] Could not determine SoundCloud playback_count for %s\n", scURL)
+	return 0
 }
+
+// Helper to resolve a SoundCloud URL using an OAuth token. Returns (plays, ok)
+func resolveSoundCloudWithToken(scURL, token string) (int, bool) {
+	resolveAPI := fmt.Sprintf("https://api.soundcloud.com/resolve?url=%s", url.QueryEscape(scURL))
+	req, err := http.NewRequest("GET", resolveAPI, nil)
+	if err != nil {
+		debugLog("[DEBUG] NewRequest error: %v\n", err)
+		return 0, false
+	}
+	req.Header.Set("Authorization", "OAuth "+token)
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		debugLog("[DEBUG] Error resolving SoundCloud URL with token: %v\n", err)
+		return 0, false
+	}
+	defer resp.Body.Close()
+	if resp.StatusCode == 200 {
+		var trackData struct {
+			ID            int `json:"id"`
+			PlaybackCount int `json:"playback_count"`
+		}
+		if err := json.NewDecoder(resp.Body).Decode(&trackData); err == nil {
+			debugLog("[DEBUG] SoundCloud playback_count (API OAuth): %d\n", trackData.PlaybackCount)
+			return trackData.PlaybackCount, true
+		}
+		return 0, false
+	}
+	// handle redirect
+	if resp.StatusCode == 302 {
+		location := resp.Header.Get("Location")
+		debugLog("[DEBUG] Token-resolve redirected to: %s\n", location)
+		req2, _ := http.NewRequest("GET", location, nil)
+		req2.Header.Set("Authorization", "OAuth "+token)
+		resp2, err := client.Do(req2)
+		if err != nil {
+			debugLog("[DEBUG] Error fetching redirected SoundCloud track with token: %v\n", err)
+			return 0, false
+		}
+		defer resp2.Body.Close()
+		if resp2.StatusCode == 200 {
+			var trackData struct {
+				ID            int `json:"id"`
+				PlaybackCount int `json:"playback_count"`
+			}
+			if err := json.NewDecoder(resp2.Body).Decode(&trackData); err == nil {
+				debugLog("[DEBUG] SoundCloud playback_count (API OAuth redirect): %d\n", trackData.PlaybackCount)
+				return trackData.PlaybackCount, true
+			}
+		}
+	}
+	debugLog("[DEBUG] SoundCloud resolve with token returned status: %d\n", resp.StatusCode)
+	return 0, false
+}
+
 func getYouTubePlays(ytURL string) int {
 	debugLog("[DEBUG] getYouTubePlays called with URL: %s\n", ytURL)
 	apiKey := os.Getenv("YOUTUBE_API_KEY")
@@ -247,7 +385,7 @@ func formatPlays(n int) string {
 }
 
 // printSortedSets reads all-sets.md, collects lines that start with "* ", extracts play counts (digits before 🎶 if present),
-// sorts entries by plays descending and prints them to stdout.
+// deduplicates entries by link, sorts entries by plays descending and prints them to stdout.
 func printSortedSets(path string) error {
 	data, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -257,13 +395,25 @@ func printSortedSets(path string) error {
 	type entry struct {
 		line  string
 		plays int
+		link  string
 	}
 	var entries []entry
 	rePlays := regexp.MustCompile(`([0-9]+)🎶`)
+	// link extraction from markdown link
+	reLink := regexp.MustCompile(`\((https?://[^\s)]+)\)`)
+	seenLinks := make(map[string]bool)
 	for _, ln := range lines {
 		trim := strings.TrimSpace(ln)
 		if !strings.HasPrefix(trim, "* ") {
 			continue
+		}
+		// extract URL to dedupe
+		link := ""
+		if m := reLink.FindStringSubmatch(trim); len(m) == 2 {
+			link = m[1]
+		}
+		if link != "" && seenLinks[link] {
+			continue // skip duplicate list line for same link
 		}
 		plays := 0
 		if m := rePlays.FindStringSubmatch(trim); len(m) == 2 {
@@ -271,7 +421,10 @@ func printSortedSets(path string) error {
 				plays = v
 			}
 		}
-		entries = append(entries, entry{line: trim, plays: plays})
+		entries = append(entries, entry{line: trim, plays: plays, link: link})
+		if link != "" {
+			seenLinks[link] = true
+		}
 	}
 	sort.Slice(entries, func(i, j int) bool {
 		return entries[i].plays > entries[j].plays
@@ -298,10 +451,15 @@ func main() {
 		fmt.Println("Error reading all-sets.md:", err)
 		return
 	}
-	debugLog("[DEBUG] Processing %d sets\n", len(setLinks))
+	debugLog("[DEBUG] Processing %d unique sets\n", len(setLinks))
 	totalPlays := 0
+	processed := make(map[string]bool)
 	for i, link := range setLinks {
-		// debugLog("[DEBUG] Processing set %d: %s (%s)\n", i+1, setNames[i], link)
+		if processed[link] {
+			continue // extra safety: skip if link already processed
+		}
+		processed[link] = true
+
 		page, err := fetchURL(link)
 		if err != nil {
 			continue
