@@ -2,8 +2,9 @@
 
 # All Sets (DJ Mixes)
 
-58 sets in total, listed from the newest to the oldest, including:
+59 sets in total, listed from the newest to the oldest, including:
 
+* [**Freedom (October 2025)**](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 1🎶
 * [**Backstreet Bar (August 2024)**](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 123🎶
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 549🎶
 * Faixa Azul (June 2023) _// NOT PUBLISHED YET_
