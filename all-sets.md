@@ -4,9 +4,9 @@
 
 59 sets in total, listed from the newest to the oldest, including:
 
-* [**Freedom (October 2025)**](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 3🎶
+* [**Freedom (October 2025)**](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 29🎶
 * [Backstreet Bar (August 2024)](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 124🎶
-* [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 552🎶
+* [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 554🎶
 * Faixa Azul (June 2023) _// NOT PUBLISHED YET_
 * Rebalancing (Decebmer 2022) _// NOT PUBLISHED YET_
 * [Lullaby (December 2021)](https://shivioua.github.io/progressive-awake/lullaby-december-2021.html) _//_ 24🎶
@@ -37,7 +37,7 @@
 * [Reminiscence (August 2011)](https://shivioua.github.io/progressive-awake/reminiscence-august-2011.html) _//_ 3🎶
 * [Chillstep (June 2011)](https://shivioua.github.io/quantum-energy/chillstep-june-2011.html) _//_ 10🎶
 * [Knockout (March 2011)](https://shivioua.github.io/fresh-dance-music/knockout-march-2011.html) _//_ 4🎶
-* [Snowdrop (March 2011)](https://shivioua.github.io/progressive-awake/snowdrop-march-2011.html) _//_ 2🎶
+* [Snowdrop (March 2011)](https://shivioua.github.io/progressive-awake/snowdrop-march-2011.html) _//_ 518🎶
 * [Love Cycle (February 2011)](https://shivioua.github.io/quantum-energy/love-cycle-february-2011.html) _//_ 13🎶
 * [Still Waters Run Deep (December 2010)](https://shivioua.github.io/quantum-energy/still-waters-run-deep-december-2010.html) _//_ 21🎶
 * [First Snow (November 2010)](https://shivioua.github.io/progressive-awake/first-snow-november-2010.html) _//_ 295🎶
@@ -64,7 +64,7 @@
 * [It’s in my soul (June 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html) _//_ 116🎶
 * [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 180🎶
 
-Total plays: **3.7k🎶**
+Total plays: **4.3k🎶**
 
 Thank you for listening 😍
 
