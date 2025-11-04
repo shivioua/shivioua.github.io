@@ -522,5 +522,5 @@ func main() {
 			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 		}
 	}
-	fmt.Printf("\nTotal plays: **%s🎧**\n", formatPlays(totalPlays))
+	fmt.Printf("\nPlays count: **%s🎧**\n", formatPlays(totalPlays))
 }
