@@ -423,7 +423,7 @@ func printSortedSets(path string) error {
 		link  string
 	}
 	var entries []entry
-	rePlays := regexp.MustCompile(`([0-9]+)🎶`)
+	rePlays := regexp.MustCompile(`([0-9]+)🎧`)
 	// link extraction from markdown link
 	reLink := regexp.MustCompile(`\((https?://[^\s)]+)\)`)
 	seenLinks := make(map[string]bool)
@@ -517,10 +517,10 @@ func main() {
 		totalPlays += plays
 		// Output in requested markdown style, only add plays info if plays > 0
 		if plays > 0 {
-			fmt.Printf("* [%s](%s) _//_ %d🎶\n", setNames[i], link, plays)
+			fmt.Printf("* [%s](%s) _//_ %d🎧\n", setNames[i], link, plays)
 		} else {
 			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 		}
 	}
-	fmt.Printf("\nTotal plays: **%s🎶**\n", formatPlays(totalPlays))
+	fmt.Printf("\nTotal plays: **%s🎧**\n", formatPlays(totalPlays))
 }
