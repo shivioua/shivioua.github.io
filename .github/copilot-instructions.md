@@ -40,6 +40,29 @@ Be immediately productive editing this repository: it's a multi-folder Jekyll-ba
   2. Update `fresh-dance-music/README.md` to include the new link.
   3. If this is a published set add it to `all-sets-sorted.md` (remove the `NOT PUBLISHED YET` marker).
 
+## Example Usage
+
+This is how you can use the canonical template:
+
+```markdown
+---
+layout: post
+title: "My First Post"
+date: 2025-11-04 12:00:00
+categories: [example]
+tags: [first, post]
+---
+
+# My First Post
+
+This is the content of my first post.
+
+## Additional Sections
+
+- Introduction
+- Conclusion
+```
+
 ## Commit / PR notes for AI edits
 - Make minimal, focused edits in a single PR. When modifying paths or metadata, include a short PR description listing files changed and why.
 - Preserve link targets and external download URLs unless given explicit instructions to change them.
