@@ -47,36 +47,61 @@ func fetchURL(url string) (string, error) {
 }
 
 // Extract set links from all-sets.md
-func extractSetLinks(filename string) ([]string, []string, error) {
+// Now returns names, links (may be empty for unpublished/non-linked items), rawLines (original trimmed list line), error
+func extractSetLinks(filename string) ([]string, []string, []string, error) {
 	debugLog("[DEBUG] Opening file: %s\n", filename)
 	file, err := os.Open(filename)
 	if err != nil {
 		debugLog("[DEBUG] Error opening file %s: %v\n", filename, err)
-		return nil, nil, err
+		return nil, nil, nil, err
 	}
 	defer file.Close()
 	var names []string
 	var links []string
+	var rawLines []string
 	re := regexp.MustCompile(`\* \[(.*?)\]\((.*?)\)`) // Markdown link
 	scanner := bufio.NewScanner(file)
 	seen := make(map[string]bool)
 	for scanner.Scan() {
 		line := scanner.Text()
-		match := re.FindStringSubmatch(line)
+		trim := strings.TrimSpace(line)
+		// Only care about list items that start with "* "
+		if !strings.HasPrefix(trim, "* ") {
+			continue
+		}
+		// Try to find a markdown link
+		match := re.FindStringSubmatch(trim)
 		if len(match) == 3 {
 			link := match[2]
-			if seen[link] {
-				// skip duplicate occurrences of the same link
+			name := match[1]
+			key := link
+			if key == "" {
+				key = trim
+			}
+			if seen[key] {
 				continue
 			}
-			seen[link] = true
-			debugLog("[DEBUG] Found set: %s (%s)\n", match[1], link)
-			names = append(names, match[1])
+			seen[key] = true
+			debugLog("[DEBUG] Found set (linked): %s (%s)\n", name, link)
+			names = append(names, name)
 			links = append(links, link)
+			rawLines = append(rawLines, trim)
+		} else {
+			// Non-linked list item (e.g. "Faixa Azul (June 2023) _// NOT PUBLISHED YET_")
+			key := trim
+			if seen[key] {
+				continue
+			}
+			seen[key] = true
+			// Use the whole trimmed line as the "name" placeholder (caller will print rawLines)
+			debugLog("[DEBUG] Found set (unlinked/raw): %s\n", trim)
+			names = append(names, trim) // name placeholder
+			links = append(links, "")   // empty link
+			rawLines = append(rawLines, trim)
 		}
 	}
-	debugLog("[DEBUG] Extracted %d unique sets\n", len(names))
-	return names, links, nil
+	debugLog("[DEBUG] Extracted %d unique sets (including unlinked)\n", len(names))
+	return names, links, rawLines, nil
 }
 
 // Dummy functions for play count extraction (to be implemented for each platform)
@@ -446,7 +471,8 @@ func main() {
 	}
 
 	debugLog("[DEBUG] Starting all-sets-plays.go")
-	setNames, setLinks, err := extractSetLinks("../all-sets.md")
+	// updated to accept rawLines returned by extractSetLinks
+	setNames, setLinks, rawLines, err := extractSetLinks("../all-sets.md")
 	if err != nil {
 		fmt.Println("Error reading all-sets.md:", err)
 		return
@@ -455,13 +481,26 @@ func main() {
 	totalPlays := 0
 	processed := make(map[string]bool)
 	for i, link := range setLinks {
-		if processed[link] {
-			continue // extra safety: skip if link already processed
+		// build dedupe key: prefer link when present, otherwise use raw line
+		key := link
+		if key == "" {
+			key = rawLines[i]
 		}
-		processed[link] = true
+		if processed[key] {
+			continue // skip if already processed
+		}
+		processed[key] = true
+
+		// If there's no external link (unpublished / raw item), print the original line unchanged
+		if link == "" {
+			fmt.Println(rawLines[i])
+			continue
+		}
 
 		page, err := fetchURL(link)
 		if err != nil {
+			// still print the linked item without plays if fetch failed
+			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 			continue
 		}
 		mixcloud, soundcloud, youtube := findExternalLinks(page)
