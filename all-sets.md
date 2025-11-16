@@ -2,7 +2,7 @@
 
 # All Sets (DJ Mixes)
 
-Listed from the newest to the oldest:
+Order by: **[Newest](./all-sets.md)** | [Top Listens](./all-sets-sorted.md)
 
 * [**Freedom (October 2025)**](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 31🎧
 * [Backstreet Bar (August 2024)](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 124🎧
@@ -72,3 +72,5 @@ Thank you for listening 😍
 ----
 
 [Back to main page](https://shivioua.github.io)
+
+----

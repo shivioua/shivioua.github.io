@@ -1,6 +1,8 @@
-# All sets Sorted by Play Count 
+![Shivioua - All Sets](./all-sets.jpg)
 
-## Highest → Lowest
+# All Sets (DJ Mixes)
+
+Order by: [Newest](./all-sets.md) | **[Top Listens](./all-sets-sorted.md)**
  
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 558🎧
 * [Snowdrop (March 2011)](https://shivioua.github.io/progressive-awake/snowdrop-march-2011.html) _//_ 518🎧
@@ -62,6 +64,13 @@
 * Rebalancing (Decebmer 2022) _// NOT PUBLISHED YET_
 * Faixa Azul (June 2023) _// NOT PUBLISHED YET_
 
+Plays count: **4.3k🎧**
+Amount of sets: **59🎶**
+
+Thank you for listening 😍
+
 ----
 
 [Back to main page](https://shivioua.github.io)
+
+----
