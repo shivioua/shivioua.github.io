@@ -7,7 +7,7 @@ Listed from the newest to the oldest:
 * [**Freedom (October 2025)**](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 31🎧
 * [Backstreet Bar (August 2024)](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 124🎧
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 558🎧
-* Faixa Azul (June 2023) _// NOT PUBLISHED YET_
+* [Faixa Azul (June 2023)](https://shivioua.github.io/progressive-awake/faixa-azul-august-2023.html) _//_ 1🎧
 * [Rebalancing (December 2022)](https://shivioua.github.io/progressive-awake/rebalancing-december-2022.html) _//_ 1🎧
 * [Lullaby (December 2021)](https://shivioua.github.io/progressive-awake/lullaby-december-2021.html) _//_ 24🎧
 * [Somebody New Vol. 3 (November 2021)](https://shivioua.github.io/progressive-awake/somebody-new-vol-3-november-2021.html) _//_ 14🎧
