@@ -2,7 +2,7 @@
 
 # All Sets (DJ Mixes)
 
-Order by: [Newest](./all-sets.md) | **[Top Listens](./all-sets-sorted.md)**
+Order by - [Newest](./all-sets.md) :: **[Top Listens](./all-sets-sorted.md)**
  
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 558🎧
 * [Snowdrop (March 2011)](https://shivioua.github.io/progressive-awake/snowdrop-march-2011.html) _//_ 518🎧
