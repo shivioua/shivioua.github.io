@@ -21,7 +21,7 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Hypnotized By Your Light (February 2021)](https://shivioua.github.io/progressive-awake/hypnotized-by-your-light-february-2021.html) _//_ 34🎧
 * [The Blue Oyster (January 2021)](https://shivioua.github.io/progressive-awake/the-blue-oyster-january-2021.html) _//_ 60🎧
 * [La Playa (July 2020)](https://shivioua.github.io/progressive-awake/la-playa-july-2020.html) _//_ 11🎧
-* Vinylegg (August 2020) _// NOT PUBLISHED YET_
+* [Vinylegg (August 2020)](https://shivioua.github.io/quantum-energy/vinylegg-april-2020.html) _//_ 1🎧
 * [Two Hearts (August 2018)](https://shivioua.github.io/quantum-energy/two-hearts__august-2018.html) _//_ 48🎧
 * [Beachball (July 2018)](https://shivioua.github.io/fresh-dance-music/beachball-july-2018.html) _//_ 29🎧
 * [New Time, New Place (June 2018)](https://shivioua.github.io/progressive-awake/new-time-new-place-june-2018.html) _//_ 33🎧
