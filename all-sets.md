@@ -15,7 +15,7 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Modern Rock & Roll (July 2021)](https://shivioua.github.io/quantum-energy/modern-rock-and-roll-july-2021.html) _//_ 15🎧
 * [Lick The Groove (May 2021)](https://shivioua.github.io/quantum-energy/lick-the-groove-may-2010.html) _//_ 23🎧
 * [Rzepedka (April 2021)](https://shivioua.github.io/fresh-dance-music/rzepedka-april-2021.html) _//_ 16🎧
-* Tribute to CDQ Burakowsa (April 2021) _// NOT PUBLISHED YET_
+* [Tribute to CDQ Burakowska (April 2021)](https://shivioua.github.io/quantum-energy/tribute-to-cdq-burakowska-april-2021.html) _//_ 1🎧
 * [Bit Harder (April 2021)](https://shivioua.github.io/progressive-awake/bit-harder-april-2021.html) _//_ 18🎧
 * [Counter Plus Plus (March 2021)](https://shivioua.github.io/quantum-energy/counter-plus-plus-march-2021.html) _//_ 15🎧
 * [Hypnotized By Your Light (February 2021)](https://shivioua.github.io/progressive-awake/hypnotized-by-your-light-february-2021.html) _//_ 34🎧
