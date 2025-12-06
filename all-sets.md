@@ -66,8 +66,8 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [It’s in my soul (June 2008)](https://shivioua.github.io/progressive-awake/its-in-my-soul-june-2008.html) _//_ 117🎧
 * [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 184🎧
 
-Plays count: **4.6k🎧**
-Amount of sets: **60🎶**
+Total plays: **5.3k🎧**  
+Total amount of sets: **61🎶**  
 
 Thank you for listening 😍
 
