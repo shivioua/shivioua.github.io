@@ -64,8 +64,8 @@ Order by - [Newest](./all-sets.md) :: **[Top Listens](./all-sets-sorted.md)**
 * [For An Angel (January 2010)](https://shivioua.github.io/fresh-dance-music/for-an-angel-january-2010.html) _//_ 3🎧
 * [Tribute to CDQ Burakowska (April 2021)](https://shivioua.github.io/quantum-energy/tribute-to-cdq-burakowska-april-2021.html) _//_ 2🎧
 
-Plays count: **4.5k🎧**
-Amount of sets: **59🎶**
+Plays count: **4.6k🎧**
+Amount of sets: **60🎶**
 
 Thank you for listening 😍
 

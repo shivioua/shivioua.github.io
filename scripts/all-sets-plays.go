@@ -325,7 +325,7 @@ func getYouTubePlays(ytURL string) int {
 	}
 	// Extract video ID from URL
 	var videoID string
-	re1 := regexp.MustCompile(`youtube\.com/watch\?v=([a-zA-Z0-9_-]+)`)
+	re1 := regexp.MustCompile(`youtube\.com/(watch|live)\?v=([a-zA-Z0-9_-]+)`)
 	re2 := regexp.MustCompile(`youtu\.be/([a-zA-Z0-9_-]+)`)
 	if m := re1.FindStringSubmatch(ytURL); len(m) == 2 {
 		videoID = m[1]
