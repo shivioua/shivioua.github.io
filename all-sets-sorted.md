@@ -6,8 +6,10 @@ Order by - [Newest](./all-sets.md) :: **[Top Listens](./all-sets-sorted.md)**
  
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 562🎧
 * [Snowdrop (March 2011)](https://shivioua.github.io/progressive-awake/snowdrop-march-2011.html) _//_ 518🎧
+* [Winylowa Kanciapa #66 (June 2021)](https://shivioua.github.io/fresh-dance-music/winylowa-kanciapa-66-june-2021.html) _//_ 436🎧
 * [First Snow (November 2010)](https://shivioua.github.io/progressive-awake/first-snow-november-2010.html) _//_ 422🎧
 * [Hard days at work (April 2009)](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html) _//_ 346🎧
+* [Winylowa Kanciapa #96 (February 2022)](https://shivioua.github.io/progressive-awake/winylowa-kanciapa-96-february-2022.html) _//_ 301🎧
 * [Just fly with me (December 2008)](https://shivioua.github.io/progressive-awake/just-fly-with-me-december-2008.html) _//_ 257🎧
 * [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html) _//_ 252🎧
 * [Spring is in the air (March 2014)](https://shivioua.github.io/progressive-awake/spring-is-in-the-air-march-2014.html) _//_ 216🎧
@@ -24,16 +26,16 @@ Order by - [Newest](./all-sets.md) :: **[Top Listens](./all-sets-sorted.md)**
 * [The Blue Oyster (January 2021)](https://shivioua.github.io/progressive-awake/the-blue-oyster-january-2021.html) _//_ 60🎧
 * [Midgard (May 2009)](https://shivioua.github.io/progressive-awake/midgard-may-2009.html) _//_ 58🎧
 * [Deanery No. 161 (May 2014)](https://shivioua.github.io/fresh-dance-music/deanery-no-161-may-2014.html) _//_ 51🎧
-* [Cave (January 2015)](https://shivioua.github.io/fresh-dance-music/cave-january-2015.html) _//_ 48🎧
 * [Two Hearts (August 2018)](https://shivioua.github.io/quantum-energy/two-hearts__august-2018.html) _//_ 48🎧
+* [Cave (January 2015)](https://shivioua.github.io/fresh-dance-music/cave-january-2015.html) _//_ 48🎧
 * [Different Kind Of Life (October 2012)](https://shivioua.github.io/progressive-awake/different-kind-of-life-october-2012.html) _//_ 47🎧
 * [Somebody New (November 2015)](https://shivioua.github.io/fresh-dance-music/somebody-new-november-2015.html) _//_ 42🎧
 * [Uncharted Waters (June 2015)](https://shivioua.github.io/progressive-awake/uncharted-waters-june-2015.html) _//_ 40🎧
 * [**Freedom (October 2025)**](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 39🎧
 * [Hypnotized By Your Light (February 2021)](https://shivioua.github.io/progressive-awake/hypnotized-by-your-light-february-2021.html) _//_ 34🎧
 * [New Time, New Place (June 2018)](https://shivioua.github.io/progressive-awake/new-time-new-place-june-2018.html) _//_ 33🎧
-* [Winter solstice (December 2012)](https://shivioua.github.io/quantum-energy/winter-solstice-december-2012.html) _//_ 29🎧
 * [Beachball (July 2018)](https://shivioua.github.io/fresh-dance-music/beachball-july-2018.html) _//_ 29🎧
+* [Winter solstice (December 2012)](https://shivioua.github.io/quantum-energy/winter-solstice-december-2012.html) _//_ 29🎧
 * [Still Waters Run Deep (December 2010)](https://shivioua.github.io/quantum-energy/still-waters-run-deep-december-2010.html) _//_ 27🎧
 * [Lullaby (December 2021)](https://shivioua.github.io/progressive-awake/lullaby-december-2021.html) _//_ 25🎧
 * [Lick The Groove (May 2021)](https://shivioua.github.io/quantum-energy/lick-the-groove-may-2010.html) _//_ 23🎧
@@ -42,17 +44,17 @@ Order by - [Newest](./all-sets.md) :: **[Top Listens](./all-sets-sorted.md)**
 * [Rzepedka (April 2021)](https://shivioua.github.io/fresh-dance-music/rzepedka-april-2021.html) _//_ 16🎧
 * [4 Seasons Of Love (November 2009)](https://shivioua.github.io/progressive-awake/4-seasons-of-love-november-2009.html) _//_ 16🎧
 * [Somebody New Vol. 3 (November 2021)](https://shivioua.github.io/progressive-awake/somebody-new-vol-3-november-2021.html) _//_ 16🎧
-* [Modern Rock & Roll (July 2021)](https://shivioua.github.io/quantum-energy/modern-rock-and-roll-july-2021.html) _//_ 15🎧
-* [Lost in You, lost myself… (October 2009)](https://shivioua.github.io/progressive-awake/lost-in-you-lost-myself-october-2009.html) _//_ 15🎧
-* [New Time, Same Place (August 2021)](https://shivioua.github.io/fresh-dance-music/new-time-same-place-august-2021.html) _//_ 15🎧
-* [Rebalancing (December 2022)](https://shivioua.github.io/progressive-awake/rebalancing-december-2022.html) _//_ 15🎧
 * [Counter Plus Plus (March 2021)](https://shivioua.github.io/quantum-energy/counter-plus-plus-march-2021.html) _//_ 15🎧
-* [7 months of dream (July 2009)](https://shivioua.github.io/progressive-awake/7-months-of-dream-dont-want-to-wake-up-july-2009.html) _//_ 14🎧
+* [Lost in You, lost myself… (October 2009)](https://shivioua.github.io/progressive-awake/lost-in-you-lost-myself-october-2009.html) _//_ 15🎧
+* [Rebalancing (December 2022)](https://shivioua.github.io/progressive-awake/rebalancing-december-2022.html) _//_ 15🎧
+* [Modern Rock & Roll (July 2021)](https://shivioua.github.io/quantum-energy/modern-rock-and-roll-july-2021.html) _//_ 15🎧
+* [New Time, Same Place (August 2021)](https://shivioua.github.io/fresh-dance-music/new-time-same-place-august-2021.html) _//_ 15🎧
 * [La Playa (July 2020)](https://shivioua.github.io/progressive-awake/la-playa-july-2020.html) _//_ 14🎧
+* [7 months of dream (July 2009)](https://shivioua.github.io/progressive-awake/7-months-of-dream-dont-want-to-wake-up-july-2009.html) _//_ 14🎧
 * [House Sweet House (March 2010)](https://shivioua.github.io/fresh-dance-music/house-sweet-house-march-2010.html) _//_ 13🎧
 * [Love Cycle (February 2011)](https://shivioua.github.io/quantum-energy/love-cycle-february-2011.html) _//_ 13🎧
-* [Ungovernable Appetence (Semptember 2009)](https://shivioua.github.io/progressive-awake/ungovernable-appetence-semptember-2009.html) _//_ 12🎧
 * [Chillstep (June 2011)](https://shivioua.github.io/quantum-energy/chillstep-june-2011.html) _//_ 12🎧
+* [Ungovernable Appetence (Semptember 2009)](https://shivioua.github.io/progressive-awake/ungovernable-appetence-semptember-2009.html) _//_ 12🎧
 * [Reminiscence (August 2011)](https://shivioua.github.io/progressive-awake/reminiscence-august-2011.html) _//_ 11🎧
 * [Vinylegg (August 2020)](https://shivioua.github.io/quantum-energy/vinylegg-april-2020.html) _//_ 7🎧
 * [Doubtfulness Waves (September 2009)](https://shivioua.github.io/progressive-awake/doubtfulness-waves-september-2009.html) _//_ 7🎧
@@ -64,8 +66,8 @@ Order by - [Newest](./all-sets.md) :: **[Top Listens](./all-sets-sorted.md)**
 * [For An Angel (January 2010)](https://shivioua.github.io/fresh-dance-music/for-an-angel-january-2010.html) _//_ 3🎧
 * [Tribute to CDQ Burakowska (April 2021)](https://shivioua.github.io/quantum-energy/tribute-to-cdq-burakowska-april-2021.html) _//_ 2🎧
 
-Plays count: **4.6k🎧**
-Amount of sets: **60🎶**
+Total plays: **5.3k🎧**  
+Total amount of sets: **61🎶**  
 
 Thank you for listening 😍
 
