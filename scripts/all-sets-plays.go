@@ -474,7 +474,6 @@ func main() {
 	}
 
 	debugLog("[DEBUG] Starting all-sets-plays.go")
-	// updated to accept rawLines returned by extractSetLinks
 	setNames, setLinks, rawLines, err := extractSetLinks("../all-sets.md")
 	if err != nil {
 		fmt.Println("Error reading all-sets.md:", err)
@@ -482,6 +481,7 @@ func main() {
 	}
 	debugLog("[DEBUG] Processing %d unique sets\n", len(setLinks))
 	totalPlays := 0
+	totalSets := 0
 	processed := make(map[string]bool)
 	for i, link := range setLinks {
 		// build dedupe key: prefer link when present, otherwise use raw line
@@ -493,6 +493,7 @@ func main() {
 			continue // skip if already processed
 		}
 		processed[key] = true
+		totalSets++
 
 		// If there's no external link (unpublished / raw item), print the original line unchanged
 		if link == "" {
@@ -525,5 +526,6 @@ func main() {
 			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 		}
 	}
-	fmt.Printf("\nPlays count: **%s🎧**\n", formatPlays(totalPlays))
+	fmt.Printf("\nTotal plays: **%s🎧**\n", formatPlays(totalPlays))
+	fmt.Printf("Total amount of sets: **%d🎶**\n", totalSets)
 }
