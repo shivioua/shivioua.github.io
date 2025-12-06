@@ -9,6 +9,7 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 562🎧
 * [Faixa Azul (June 2023)](https://shivioua.github.io/progressive-awake/faixa-azul-august-2023.html) _//_ 7🎧
 * [Rebalancing (December 2022)](https://shivioua.github.io/progressive-awake/rebalancing-december-2022.html) _//_ 15🎧
+* [Winylowa Kanciapa #96 (February 2022)](https://shivioua.github.io/progressive-awake/winylowa-kanciapa-96-february-2022.html) _//_ 301🎧
 * [Lullaby (December 2021)](https://shivioua.github.io/progressive-awake/lullaby-december-2021.html) _//_ 25🎧
 * [Somebody New Vol. 3 (November 2021)](https://shivioua.github.io/progressive-awake/somebody-new-vol-3-november-2021.html) _//_ 16🎧
 * [New Time, Same Place (August 2021)](https://shivioua.github.io/fresh-dance-music/new-time-same-place-august-2021.html) _//_ 15🎧
