@@ -13,7 +13,7 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Somebody New Vol. 3 (November 2021)](https://shivioua.github.io/progressive-awake/somebody-new-vol-3-november-2021.html) _//_ 16🎧
 * [New Time, Same Place (August 2021)](https://shivioua.github.io/fresh-dance-music/new-time-same-place-august-2021.html) _//_ 15🎧
 * [Modern Rock & Roll (July 2021)](https://shivioua.github.io/quantum-energy/modern-rock-and-roll-july-2021.html) _//_ 15🎧
-* [Winylowa Kanciapa #66 (June 2021)](https://shivioua.github.io/fresh-dance-music/winylowa-kanciapa-66-june-2021.html) _//_436🎧 
+* [Winylowa Kanciapa #66 (June 2021)](https://shivioua.github.io/fresh-dance-music/winylowa-kanciapa-66-june-2021.html) _//_ 436🎧 
 * [Lick The Groove (May 2021)](https://shivioua.github.io/quantum-energy/lick-the-groove-may-2010.html) _//_ 23🎧
 * [Rzepedka (April 2021)](https://shivioua.github.io/fresh-dance-music/rzepedka-april-2021.html) _//_ 16🎧
 * [Tribute to CDQ Burakowska (April 2021)](https://shivioua.github.io/quantum-energy/tribute-to-cdq-burakowska-april-2021.html) _//_ 2🎧
