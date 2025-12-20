@@ -4,7 +4,8 @@
 
 Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 
-* [**Freedom (October 2025)**](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 39🎧
+* [**Rolls & Bass (December 2025)**](https://shivioua.github.io/quantum-energy/rolls-and-bass-december-2025.html) _//_ 1🎧
+* [Freedom (October 2025)](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 39🎧
 * [Backstreet Bar (August 2024)](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 126🎧
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 562🎧
 * [Faixa Azul (June 2023)](https://shivioua.github.io/progressive-awake/faixa-azul-august-2023.html) _//_ 7🎧
