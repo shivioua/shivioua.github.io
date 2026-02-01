@@ -526,6 +526,6 @@ func main() {
 			fmt.Printf("* [%s](%s)\n", setNames[i], link)
 		}
 	}
-	fmt.Printf("\nTotal plays: **%s🎧**\n", formatPlays(totalPlays))
-	fmt.Printf("Total amount of sets: **%d🎶**\n", totalSets)
+	fmt.Printf("\nTotal plays: **%s🎧**  \n", formatPlays(totalPlays))
+	fmt.Printf("Total amount of sets: **%d🎶**  \n", totalSets)
 }
