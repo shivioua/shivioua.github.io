@@ -4,7 +4,7 @@
 
 Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 
-* [**Rolls & Bass (December 2025)**](https://shivioua.github.io/quantum-energy/rolls-and-bass-december-2025.html) _//_ 201🎧
+* [**Rolls & Bass (December 2025)**](https://shivioua.github.io/quantum-energy/rolls-and-bass-december-2025.html) _//_ 203🎧
 * [Freedom (October 2025)](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 50🎧
 * [Backstreet Bar (August 2024)](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 129🎧
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 567🎧
@@ -15,12 +15,12 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Somebody New Vol. 3 (November 2021)](https://shivioua.github.io/progressive-awake/somebody-new-vol-3-november-2021.html) _//_ 16🎧
 * [New Time, Same Place (August 2021)](https://shivioua.github.io/fresh-dance-music/new-time-same-place-august-2021.html) _//_ 15🎧
 * [Modern Rock & Roll (July 2021)](https://shivioua.github.io/quantum-energy/modern-rock-and-roll-july-2021.html) _//_ 16🎧
-* [Winylowa Kanciapa #66 (June 2021)](https://shivioua.github.io/fresh-dance-music/winylowa-kanciapa-66-june-2021.html) _//_ 443🎧
+* [Winylowa Kanciapa #66 (June 2021)](https://shivioua.github.io/fresh-dance-music/winylowa-kanciapa-66-june-2021.html) _//_ 444🎧
 * [Lick The Groove (May 2021)](https://shivioua.github.io/quantum-energy/lick-the-groove-may-2010.html) _//_ 23🎧
 * [Rzepedka (April 2021)](https://shivioua.github.io/fresh-dance-music/rzepedka-april-2021.html) _//_ 16🎧
 * [Tribute to CDQ Burakowska (April 2021)](https://shivioua.github.io/quantum-energy/tribute-to-cdq-burakowska-april-2021.html) _//_ 2🎧
 * [Bit Harder (April 2021)](https://shivioua.github.io/progressive-awake/bit-harder-april-2021.html) _//_ 19🎧
-* [Counter Plus Plus (March 2021)](https://shivioua.github.io/quantum-energy/counter-plus-plus-march-2021.html) _//_ 15🎧
+* [Counter Plus Plus (March 2021)](https://shivioua.github.io/quantum-energy/counter-plus-plus-march-2021.html) _//_ 17🎧
 * [Hypnotized By Your Light (February 2021)](https://shivioua.github.io/progressive-awake/hypnotized-by-your-light-february-2021.html) _//_ 62🎧
 * [The Blue Oyster (January 2021)](https://shivioua.github.io/progressive-awake/the-blue-oyster-january-2021.html) _//_ 63🎧
 * [La Playa (July 2020)](https://shivioua.github.io/progressive-awake/la-playa-july-2020.html) _//_ 14🎧
@@ -33,33 +33,33 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Uncharted Waters (June 2015)](https://shivioua.github.io/progressive-awake/uncharted-waters-june-2015.html) _//_ 41🎧
 * [Cave (January 2015)](https://shivioua.github.io/fresh-dance-music/cave-january-2015.html) _//_ 52🎧
 * [Deanery No. 161 (May 2014)](https://shivioua.github.io/fresh-dance-music/deanery-no-161-may-2014.html) _//_ 52🎧
-* [Spring is in the air (March 2014)](https://shivioua.github.io/progressive-awake/spring-is-in-the-air-march-2014.html) _//_ 221🎧
+* [Spring is in the air (March 2014)](https://shivioua.github.io/progressive-awake/spring-is-in-the-air-march-2014.html) _//_ 222🎧
 * [Winter solstice (December 2012)](https://shivioua.github.io/quantum-energy/winter-solstice-december-2012.html) _//_ 30🎧
 * [Different Kind Of Life (October 2012)](https://shivioua.github.io/progressive-awake/different-kind-of-life-october-2012.html) _//_ 47🎧
 * [Everyday Something New (November 2011)](https://shivioua.github.io/quantum-energy/everyday-something-new-november-2011.html) _//_ 17🎧
 * [Reminiscence (August 2011)](https://shivioua.github.io/progressive-awake/reminiscence-august-2011.html) _//_ 11🎧
 * [Chillstep (June 2011)](https://shivioua.github.io/quantum-energy/chillstep-june-2011.html) _//_ 12🎧
 * [Knockout (March 2011)](https://shivioua.github.io/fresh-dance-music/knockout-march-2011.html) _//_ 8🎧
-* [Snowdrop (March 2011)](https://shivioua.github.io/progressive-awake/snowdrop-march-2011.html) _//_ 538🎧
-* [Love Cycle (February 2011)](https://shivioua.github.io/quantum-energy/love-cycle-february-2011.html) _//_ 66🎧
+* [Snowdrop (March 2011)](https://shivioua.github.io/progressive-awake/snowdrop-march-2011.html) _//_ 541🎧
+* [Love Cycle (February 2011)](https://shivioua.github.io/quantum-energy/love-cycle-february-2011.html) _//_ 67🎧
 * [Still Waters Run Deep (December 2010)](https://shivioua.github.io/quantum-energy/still-waters-run-deep-december-2010.html) _//_ 29🎧
-* [First Snow (November 2010)](https://shivioua.github.io/progressive-awake/first-snow-november-2010.html) _//_ 473🎧
-* [House Sweet House (March 2010)](https://shivioua.github.io/fresh-dance-music/house-sweet-house-march-2010.html) _//_ 13🎧
+* [First Snow (November 2010)](https://shivioua.github.io/progressive-awake/first-snow-november-2010.html) _//_ 477🎧
+* [House Sweet House (March 2010)](https://shivioua.github.io/fresh-dance-music/house-sweet-house-march-2010.html) _//_ 14🎧
 * [For An Angel (January 2010)](https://shivioua.github.io/fresh-dance-music/for-an-angel-january-2010.html) _//_ 8🎧
 * [Music Is My Oxygen (January 2010)](https://shivioua.github.io/progressive-awake/music-is-my-oxygen-january-2010.html) _//_ 10🎧
 * [4 Seasons Of Love (November 2009)](https://shivioua.github.io/progressive-awake/4-seasons-of-love-november-2009.html) _//_ 16🎧
 * [Lost in You, lost myself… (October 2009)](https://shivioua.github.io/progressive-awake/lost-in-you-lost-myself-october-2009.html) _//_ 15🎧
 * [Doubtfulness Waves (September 2009)](https://shivioua.github.io/progressive-awake/doubtfulness-waves-september-2009.html) _//_ 7🎧
 * [Ungovernable Appetence (September 2009)](https://shivioua.github.io/progressive-awake/ungovernable-appetence-september-2009.html) _//_ 13🎧
-* [Opium (July 2009)](https://shivioua.github.io/progressive-awake/opium-july-2009.html) _//_ 4🎧
+* [Opium (July 2009)](https://shivioua.github.io/progressive-awake/opium-july-2009.html) _//_ 5🎧
 * [7 months of dream (July 2009)](https://shivioua.github.io/progressive-awake/7-months-of-dream-dont-want-to-wake-up-july-2009.html) _//_ 14🎧
-* [Effervescence (June 2009)](https://shivioua.github.io/progressive-awake/effervescence-june-2009.html) _//_ 4🎧
-* [Lobotomia (June 2009)](https://shivioua.github.io/progressive-awake/lobotomia-june-2009.html) _//_ 110🎧
+* [Effervescence (June 2009)](https://shivioua.github.io/progressive-awake/effervescence-june-2009.html) _//_ 6🎧
+* [Lobotomia (June 2009)](https://shivioua.github.io/progressive-awake/lobotomia-june-2009.html) _//_ 113🎧
 * [Midgard (May 2009)](https://shivioua.github.io/progressive-awake/midgard-may-2009.html) _//_ 58🎧
 * [Hard days at work (April 2009)](https://shivioua.github.io/progressive-awake/hard-days-at-work-april-2009.html) _//_ 348🎧
 * [When I am overtaken by... (April 2009)](https://shivioua.github.io/progressive-awake/when-i-am-overtaken-by-april-2009.html) _//_ 255🎧
-* [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html) _//_ 77🎧
-* [Discovering myself with You (March 2009)](https://shivioua.github.io/progressive-awake/discovering-myself-with-you-march-2009.html) _//_ 101🎧
+* [Sweet candies (March 2009)](https://shivioua.github.io/progressive-awake/sweet-candies-march-2009.html) _//_ 81🎧
+* [Discovering myself with You (March 2009)](https://shivioua.github.io/progressive-awake/discovering-myself-with-you-march-2009.html) _//_ 104🎧
 * [Nothing (January 2009)](https://shivioua.github.io/progressive-awake/nothing-january-2009.html) _//_ 127🎧
 * [Just fly with me (December 2008)](https://shivioua.github.io/progressive-awake/just-fly-with-me-december-2008.html) _//_ 257🎧
 * [Love Paradox (August 2008)](https://shivioua.github.io/progressive-awake/love-paradox-august-2008.html) _//_ 72🎧
