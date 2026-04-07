@@ -23,7 +23,7 @@
 * Social Media: [Facebook](https://www.facebook.com/shivioua/), [Instagram](https://www.instagram.com/shivioua/), [TikTok](https://www.tiktok.com/@shivioua), [GitHub](https://github.com/shivioua), [Discogs](https://www.discogs.com/user/shivioua), [Linktree](https://linktr.ee/shivioua), [Last.FM](https://www.last.fm/pl/user/shivioua), [About Me](https://about.me/shivioua/)
  ,   [Twitter](https://twitter.com/shivioua), [Wordpress](https://shivioua.wordpress.com/)
 * Support me: [PayPalMe](https://paypal.me/shivioua), [Patreon](https://www.patreon.com/shivioua), [BuyMeACoffe](https://www.buymeacoffee.com/shivioua)
-* My Mini Rental (PL): [Shivioua.Rent](./rent/index.html)
+* My Mini Rental (PL): [Shivioua.Rent](./rent/index.html) (Speakers, Lighting, DJ Equipment, etc.)
 
 <!-- TODO: -
 * [Bandcamp](https://shivioua.bandcamp.com/)
