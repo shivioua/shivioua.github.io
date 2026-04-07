@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shivioua.Rent – Wynajem nagłośnienia i oświetlenia</title>
+  <meta name="description" content="Wynajem nagłośnienia, oświetlenia i sprzętu DJ na imprezy prywatne, szkolne i firmowe. Warszawa (Mokotów, Ursynów) i okolice." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --dark: #0a0a0a;
+      --dark2: #111111;
+      --text: #e8e8e8;
+      --muted: #999;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('uki.sound.background.1.png') center/cover no-repeat;
+      filter: brightness(0.28);
+      z-index: 0;
+    }
+
+    .hero > * { position: relative; z-index: 1; }
+
+    .hero img.logo {
+      width: min(340px, 80vw);
+      margin-bottom: 1.8rem;
+      filter: drop-shadow(0 0 18px rgba(201,168,76,0.5));
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-tagline strong {
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    .hero-location {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--gold);
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.7rem 2rem;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1rem;
+      letter-spacing: 0.06em;
+      border-radius: 3px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn:hover {
+      background: var(--gold);
+      color: #000;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: clamp(1.3rem, 3vw, 1.7rem);
+      color: var(--gold);
+      margin-bottom: 2rem;
+      text-align: center;
+      letter-spacing: 0.04em;
+    }
+
+    /* SPECIALTIES */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 6px;
+      padding: 1.5rem 1.2rem;
+      text-align: center;
+      transition: border-color 0.2s;
+    }
+    .card:hover { border-color: var(--gold); }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    /* EQUIPMENT TABLE */
+    .divider {
+      border: none;
+      border-top: 1px solid #222;
+      margin: 0;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--gold);
+    }
+
+    th {
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      color: var(--gold);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 0.55rem 0.8rem;
+      color: var(--text);
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    tr:hover td { background: #161616; }
+
+    .type-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 3px;
+      background: #222;
+      color: var(--muted);
+    }
+    .type-badge.naglosnienie { color: #7ec8e3; border: 1px solid #7ec8e340; }
+    .type-badge.oswietlenie  { color: #c9a84c; border: 1px solid #c9a84c40; }
+    .type-badge.dj           { color: #b08fff; border: 1px solid #b08fff40; }
+    .type-badge.akcesoria    { color: #aaa; border: 1px solid #aaa40; }
+
+    .price {
+      white-space: nowrap;
+      font-weight: 600;
+      color: var(--gold-light);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      border-top: 1px solid #222;
+    }
+
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text);
+      text-decoration: none;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      padding: 0.7rem 1.3rem;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .contact-link:hover {
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    .contact-note {
+      text-align: center;
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-top: 1px solid #1a1a1a;
+      color: #444;
+      font-size: 0.82rem;
+    }
+    footer a { color: #555; text-decoration: none; }
+    footer a:hover { color: var(--gold); }
+
+    @media (max-width: 480px) {
+      .cards { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <img class="logo" src="shivioua.rent.logo.png" alt="Shivioua.Rent" />
+    <p class="hero-tagline">Wynajem nagłośnienia i oświetlenia na <strong>imprezy prywatne, szkolne i firmowe</strong>.</p>
+    <p class="hero-sub">Domówki &bull; Eventy &bull; Integracje</p>
+    <p class="hero-sub">Możliwy dowóz i montaż.</p>
+    <p class="hero-location">📍 Warszawa (Mokotów, Ursynów) i okolice</p>
+    <a class="btn" href="#kontakt">Zapytaj o dostępność</a>
+  </header>
+
+  <!-- SPECIALTIES -->
+  <section id="oferta">
+    <h2>Co oferuję</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🔊</div>
+        <h3>Nagłośnienie imprez</h3>
+        <p>Wynajem głośników, mikrofonów i zestawów audio na domówki, imprezy szkolne i firmowe.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Oświetlenie imprezowe</h3>
+        <p>Efekty świetlne i klimatyczne podświetlenie sal, klubów, lokali i mieszkań. Światło, które robi klimat.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛠</div>
+        <h3>Obsługa techniczna</h3>
+        <p>Montaż, konfiguracja i wsparcie techniczne podczas wydarzeń. Sprzęt działa, Ty bawisz się spokojnie.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎧</div>
+        <h3>DJ / Konferansjer</h3>
+        <p>Oprawa muzyczna i prowadzenie wydarzeń. Imprezy prywatne, integracje, wydarzenia zamknięte, eventy sportowe.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- EQUIPMENT -->
+  <section id="sprzet">
+    <h2>Sprzęt do wynajmu</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nazwa</th>
+            <th>Typ</th>
+            <th>Cena / doba</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>N01</td><td>Głośnik JBL Party Box 310</td><td><span class="type-badge naglosnienie">Nagłośnienie</span></td><td class="price">110 zł</td></tr>
+          <tr><td>N02</td><td>Statyw do głośnika Gravity</td><td><span class="type-badge naglosnienie">Nagłośnienie</span></td><td class="price">10 zł</td></tr>
+          <tr><td>N03</td><td>Głośnik Mobilny JBL Extreme 2</td><td><span class="type-badge naglosnienie">Nagłośnienie</span></td><td class="price">65 zł</td></tr>
+          <tr><td>D01</td><td>Kontroler Pioneer DDJ-1000SRT (Serato)</td><td><span class="type-badge dj">DJ</span></td><td class="price">275 zł</td></tr>
+          <tr><td>D02</td><td>Kontroler Pioneer DDJ-SX (Serato)</td><td><span class="type-badge dj">DJ</span></td><td class="price">80 zł</td></tr>
+          <tr><td>D03</td><td>Gramofon Reloop RP-7000</td><td><span class="type-badge dj">DJ</span></td><td class="price">100 zł</td></tr>
+          <tr><td>D04</td><td>Mikser Pioneer DJM-S3 (Serato)</td><td><span class="type-badge dj">DJ</span></td><td class="price">115 zł</td></tr>
+          <tr><td>D05</td><td>Zestaw 2 Mikrofonów Bezprzewodowych AKG WMS40 Mini2</td><td><span class="type-badge dj">DJ</span></td><td class="price">40 zł</td></tr>
+          <tr><td>D06</td><td>Kontroler Denon DJ Prime Go</td><td><span class="type-badge dj">DJ</span></td><td class="price">190 zł</td></tr>
+          <tr><td>D06</td><td>Stand do Laptopa MAGMA Vector</td><td><span class="type-badge dj">DJ</span></td><td class="price">15 zł</td></tr>
+          <tr><td>O01</td><td>Neon JBL PartyLight Stick</td><td><span class="type-badge oswietlenie">Oświetlenie</span></td><td class="price">25 zł</td></tr>
+          <tr><td>O02</td><td>Światło JBL PartyLight Beam</td><td><span class="type-badge oswietlenie">Oświetlenie</span></td><td class="price">30 zł</td></tr>
+          <tr><td>O03</td><td>Kula LED KTV Ball Lamp</td><td><span class="type-badge oswietlenie">Oświetlenie</span></td><td class="price">3 zł</td></tr>
+          <tr><td>O04</td><td>Żarówka dyskotekowa LED E27</td><td><span class="type-badge oswietlenie">Oświetlenie</span></td><td class="price">1 zł</td></tr>
+          <tr><td>O05</td><td>Lampa UV LED</td><td><span class="type-badge oswietlenie">Oświetlenie</span></td><td class="price">15 zł</td></tr>
+          <tr><td>A01</td><td>Okablowanie (chinch, jack, XLR, etc.)*</td><td><span class="type-badge akcesoria">Akcesoria</span></td><td class="price">0 zł</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:1rem; font-size:0.82rem; color:#555; text-align:center;">* Ceny brutto za dobę. Możliwe pakiety na dłuższy wynajem.</p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- CONTACT -->
+  <section id="kontakt" class="contact-section">
+    <h2>Kontakt</h2>
+    <div class="contact-grid">
+      <a class="contact-link" href="https://www.facebook.com/shivioua.rent" target="_blank" rel="noopener">
+        📘 Facebook
+      </a>
+      <a class="contact-link" href="https://www.instagram.com/shivioua.rent" target="_blank" rel="noopener">
+        📸 Instagram
+      </a>
+    </div>
+    <p class="contact-note">Napisz wiadomość – odpiszę szybko i ustalimy szczegóły.</p>
+  </section>
+
+  <footer>
+    &copy; 2026 <a href="https://shivioua.github.io">Shivioua</a> &mdash; Warszawa
+  </footer>
+
+</body>
+</html>
