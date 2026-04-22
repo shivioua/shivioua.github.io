@@ -67,6 +67,7 @@
     .slide-meta {
       display: flex; align-items: center; gap: 0.55rem;
       font-size: 0.7rem; color: var(--muted); letter-spacing: 0.07em;
+      width: 100%;
     }
     .today-pip {
       font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
@@ -163,12 +164,12 @@
     /* ── NEXT BUTTON ── */
     .btn-next {
       display: inline-flex; align-items: center; gap: 0.4rem;
-      margin-top: 0.3rem; align-self: flex-start;
-      padding: 0.45rem 1.3rem;
+      padding: 0.28rem 0.9rem;
       border: 1.5px solid var(--yellow); border-radius: 99px;
       background: transparent; color: var(--yellow);
-      font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.05em;
       cursor: pointer; transition: background .2s, color .2s;
+      margin-left: auto;
     }
     .btn-next:hover { background: var(--yellow); color: #000; }
 
@@ -335,13 +336,13 @@
           <div class="slide-meta">
             ${isToday ? "<span class='today-pip'>Today's Pick</span>" : ''}
             <span>${i + 1} / ${list.length}</span>
+            <button class="btn-next" onclick="location.reload()" title="Load another random technique">Next ↻</button>
           </div>
           <p class="slide-name">${nameHTML}</p>
           <div class="video-wrap${vertical ? ' vertical' : ''}">
             ${videoHTML}
           </div>
           <div class="tags">${tagsHTML}</div>
-          <button class="btn-next" onclick="location.reload()" title="Load another random technique">Next ↻</button>
         </div>`;
       feed.appendChild(slide);
 
