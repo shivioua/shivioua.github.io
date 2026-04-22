@@ -180,7 +180,6 @@
 
 <header class="hdr">
   <div class="hdr-title">BJJ <span class="acc">NO-GI</span> · Technique Of The Day</div>
-  <span class="badge" id="date-badge"></span>
 </header>
 
 <div id="root">
@@ -193,10 +192,6 @@
 
 <script src="tod-cfg.js"></script>
 <script>
-  // Date badge
-  document.getElementById('date-badge').textContent =
-    new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-
   // Escape HTML to prevent XSS
   const esc = s => String(s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;')
