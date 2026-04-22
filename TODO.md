@@ -1,5 +1,11 @@
 # TODOs
 
+
+# Od znajomych 
+
+- [ ] zrzucić wszyskie todo z GitHub Issues do tego pliku, żeby mieć wszystko w jednym miejscu.
+- [ ] Ponio: dodać przykłady realizaji: filmiki, zdjęcia etc. 
+
 All sets should have the following links: YouTube, Soundcloud, Mixcloud, Spotify playlist.
 
 ## January
