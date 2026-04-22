@@ -218,6 +218,10 @@
       else if (u.hostname.includes('youtube.com') && u.pathname.startsWith('/embed/')) {
         return raw;
       }
+      // youtube.com/shorts/ID
+      else if (u.hostname.includes('youtube.com') && u.pathname.startsWith('/shorts/')) {
+        vid = u.pathname.split('/shorts/')[1].split('/')[0];
+      }
       // youtu.be/ID
       else if (u.hostname === 'youtu.be') {
         vid = u.pathname.slice(1).split('/')[0];
