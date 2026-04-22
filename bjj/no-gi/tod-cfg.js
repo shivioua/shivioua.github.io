@@ -109,6 +109,7 @@ window.TOD_CONFIG = {
     {
         name: "How to never get stuck in Closed Guard Again!",
         url: "https://www.youtube.com/watch?v=d_zfY7Kjezo",
+        noEmbed: true,
         tags: ["#closed-guard", "#escape", "#top-game"]
     }, 
     {

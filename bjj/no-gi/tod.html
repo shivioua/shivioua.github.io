@@ -300,20 +300,21 @@
       const isToday  = i === pickIdx;
       const src      = safeURL(toEmbedURL(t.url || ''));
       const fb       = src && isFacebookURL(src);
+      const noEmbed  = !!t.noEmbed || fb;
       const href     = src ? (fb ? fbWatchURL(src) : watchURL(src)) : '';
-      const vertical = src && !fb && isVerticalEmbed(src);
+      const vertical = src && !noEmbed && isVerticalEmbed(src);
       const tagsHTML = (t.tags || []).map(tg => `<span class="tag">${esc(tg)}</span>`).join('');
       const nameHTML = href
         ? `<a href="${esc(href)}" target="_blank" rel="noopener">${esc(t.name || 'Unnamed technique')}</a>`
         : esc(t.name || 'Unnamed technique');
 
       let videoHTML;
-      if (fb && href) {
-        // Facebook blocks iframes — show a styled link card instead
+      if (noEmbed && href) {
+        // Embedding disabled or blocked — show a styled link card instead
         videoHTML = `<a class="ext-card" href="${esc(href)}" target="_blank" rel="noopener">
           <span class="ext-icon">▶</span>
-          <span class="ext-label">Watch on Facebook</span>
-          <span class="ext-note">Facebook does not allow embedding — opens in new tab</span>
+          <span class="ext-label">Watch on ${fb ? 'Facebook' : 'YouTube'}</span>
+          <span class="ext-note">${fb ? 'Facebook does not allow embedding' : 'Embedding disabled by video owner'} — opens in new tab</span>
         </a>`;
       } else if (src) {
         videoHTML = `<iframe
