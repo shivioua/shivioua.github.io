@@ -28,6 +28,7 @@ window.TOD_CONFIG = {
     },
     {
         name: "Closed guard escape no-gi",
+        noEmbed: true,
         url: "https://www.youtube.com/shorts/JfGU1KFeblY", 
         tags: ["#closed-guard", "#escape", "#bottom-game"]
     },
@@ -165,6 +166,36 @@ window.TOD_CONFIG = {
     { name: "Guard break to submission",
       url: "https://www.instagram.com/reel/DXCLf-gjpud/embed/",
       tags: ["#guard-break", "#closed-guard", "#submission", "#top-game"]
+    }, 
+    {
+        name: "BJJ Moves: Arm Bar From Guard by John Danaher",
+        url: "https://www.youtube.com/watch?v=pQ43Oy5k9yQ", 
+        tags: ["#armbar", "#submission", "#john-danaher", "#bottom-game"]
+    }, 
+    {
+        "name": "No Gi Pendulum Sweep and Arm Bar from Closed Guard (Lachlan Giles)",
+        url: "https://www.youtube.com/watch?v=58ItAArEM4s", 
+        tags: ["#pendulum-sweep", "#armbar", "#closed-guard", "#bottom-game"]
+    }, 
+    {
+        name: "Far armbar from side control (Lachlan Giles)",
+        url: "https://www.youtube.com/watch?v=qouu5qFtZZA", 
+        tags: ["#armbar", "#side-control", "#top-game"]
+    },
+    {
+        name: "Armbar from mount",
+        url: "https://www.youtube.com/watch?v=QwQRDEydJCM",
+        tags: ["#armbar", "#mount", "#top-game"]
+    },
+    {
+        name: "The Best Guard For No Gi: Comprehensive Breakdown of the Reverse De La Riva Guard",
+        url: "https://www.youtube.com/watch?v=zDl9hklGM-o", 
+        tags: ["#reverse-de-la-riva", "#guard", "#no-gi", "#bottom-game"]
+    }, 
+    {
+        name: "Armbar from Closed Guard No-Gi | BJJ for All Levels",
+        url: "https://www.youtube.com/watch?v=xcq2Gqn-cVw", 
+        tags: ["#armbar", "#closed-guard", "#no-gi", "#bottom-game"]
     }
   ]
 };
