@@ -196,6 +196,36 @@ window.TOD_CONFIG = {
         name: "Armbar from Closed Guard No-Gi | BJJ for All Levels",
         url: "https://www.youtube.com/watch?v=xcq2Gqn-cVw", 
         tags: ["#armbar", "#closed-guard", "#no-gi", "#bottom-game"]
+    }, 
+    {
+        name: "@tomeralroy: Side Control Escape Rules", 
+        url: "https://www.instagram.com/p/DXeWcy7q5_A/embed/",
+        tags: ["#side-control", "#escape", "#defense", "#bottom-game"]
+    }, 
+    {
+        name: "Tye Ruotolo’s brilliant armbar from the half guard knee shield",
+        url: "https://www.facebook.com/reel/1407326453992218",
+        tags: ["#armbar", "#half-guard", "#knee-shield", "#top-game"]
+    },
+    {
+        name: "@luukaaronbjj: Buggy escape",
+        url: "https://www.instagram.com/reel/DXelITLjFT2/embed/",
+        tags: ["#buggy-escape", "#escape", "#defense", "#bottom-game"]
+    }, 
+    {   
+        name: "5 tips to play guard against bigger opponents",
+        url: "https://www.instagram.com/reel/DWoRQX_qA7C/embed/",
+        tags: ["#guard", "#tips", "#bigger-opponents", "#bottom-game"]
+    }, 
+    {
+        name: "4 passes from HQ",
+        url: "https://www.facebook.com/reel/1522172702920090",
+        tags: ["#half-guard", "#guard-pass", "#top-game"]
+    }, 
+    {
+        name: "3 best passes from the split squat",
+        url: "https://www.facebook.com/reel/1307997081296257",
+        tags: ["#split-squat", "#guard-pass", "#top-game"]
     }
   ]
 };
