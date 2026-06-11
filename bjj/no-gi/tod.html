@@ -79,6 +79,16 @@
 
     /* ── ERROR ── */
     .err { color: var(--muted); font-size: 0.88rem; text-align: center; }
+
+    /* ── FOOTER ── */
+    .ftr {
+      position: fixed; inset: auto 0 0 0;
+      text-align: center;
+      padding: 0.55rem 1rem;
+      font-size: 0.65rem; color: var(--muted); letter-spacing: 0.05em;
+      background: linear-gradient(to top, rgba(0,0,0,.92) 60%, transparent);
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -88,6 +98,8 @@
 <div class="wrap" id="wrap">
   <span style="color:#444;font-size:.8rem;letter-spacing:.1em">Loading…</span>
 </div>
+
+<footer class="ftr"><a href="https://shivioua.github.io" target="_blank" rel="noopener">&copy; Shivioua</a> &nbsp;·&nbsp; last update: 2026-06-11 21:31 CEST</footer>
 
 <script src="tod-cfg.js"></script>
 <script>
