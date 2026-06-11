@@ -10,6 +10,7 @@
 // ─────────────────────────────────────────────────────────────────
 
 window.TOD_CONFIG = {
+  lastUpdate: "2026-06-11 21:31 CEST",
   techniques: [
     { id:  1, url: "https://www.youtube.com/watch?v=r6mDDpc5474" },
     { id:  2, url: "https://www.youtube.com/shorts/VKxCRh1jODk" },

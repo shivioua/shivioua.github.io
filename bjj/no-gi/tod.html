@@ -32,6 +32,7 @@
       padding: 0.9rem 1.4rem;
       font-size: 0.78rem; font-weight: 700;
       letter-spacing: 0.1em; text-transform: uppercase;
+      text-align: center;
       background: linear-gradient(to bottom, rgba(0,0,0,.95) 60%, transparent);
     }
     .hdr .acc { color: var(--yellow); }
@@ -89,6 +90,9 @@
       background: linear-gradient(to top, rgba(0,0,0,.92) 60%, transparent);
       pointer-events: none;
     }
+    .ftr a { pointer-events: all; }
+    .ftr a { color: var(--yellow); text-decoration: none; }
+    .ftr a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -99,7 +103,7 @@
   <span style="color:#444;font-size:.8rem;letter-spacing:.1em">Loading…</span>
 </div>
 
-<footer class="ftr"><a href="https://shivioua.github.io" target="_blank" rel="noopener">&copy; Shivioua</a> &nbsp;·&nbsp; last update: 2026-06-11 21:31 CEST</footer>
+<footer class="ftr"><a href="https://shivioua.github.io" target="_blank" rel="noopener">&copy; Shivioua</a> &nbsp;&middot;&nbsp; last update: <span id="last-update"></span></footer>
 
 <script src="tod-cfg.js"></script>
 <script>
@@ -115,6 +119,7 @@
     ? window.TOD_CONFIG.techniques : [];
 
   document.getElementById('tech-count').textContent = list.length;
+  document.getElementById('last-update').textContent = window.TOD_CONFIG?.lastUpdate ?? '';
 
   const wrap = document.getElementById('wrap');
 
