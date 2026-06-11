@@ -226,6 +226,21 @@ window.TOD_CONFIG = {
         name: "3 best passes from the split squat",
         url: "https://www.facebook.com/reel/1307997081296257",
         tags: ["#split-squat", "#guard-pass", "#top-game"]
+    },
+    {
+        name: "Sposoby żeby wykończyć balachę na gdy przeciwnik oporuje",
+        url: "https://www.instagram.com/reel/DY5saZQtZUl/",
+        tags: ["#armbar", "#top-game", "#submissions", "#poddanie", "#balacha"]
+    }, 
+    {
+        name: "This is how to pass with Headquarters",
+        url: "https://www.youtube.com/watch?v=3x7Mgxcy3Wo",
+        tags: ["#half-guard", "#headquarters", "#guard-pass", "#top-game"]
+    }, 
+    {
+        name: "Pass the Knee Shield with These 3 Strategies",
+        url: "https://www.youtube.com/watch?v=i_zvYu5w92g",
+        tags: ["#half-guard", "#knee-shield", "#guard-pass", "#top-game"]
     }
   ]
 };
