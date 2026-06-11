@@ -134,14 +134,14 @@
     const id   = Number(pick.id);
 
     wrap.innerHTML = `
-      <button class="btn-next" onclick="location.reload()" title="Load another random technique">Next ↻</button>
+      ${!requestedId ? `<button class="btn-next" onclick="location.reload()" title="Load another random technique">Next ↻</button>` : ''}
       <hr>
       ${href
         ? `<a class="num-link" href="${href}" target="_blank" rel="noopener">#${id}</a>`
         : `<span class="num-link" style="cursor:default">#${id}</span>`
       }
       <hr>
-      <button class="btn-next" onclick="location.reload()" title="Load another random technique">Next ↻</button>
+      ${!requestedId ? `<button class="btn-next" onclick="location.reload()" title="Load another random technique">Next ↻</button>` : ''}
     `;
   }
 </script>
