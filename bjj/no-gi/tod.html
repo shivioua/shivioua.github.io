@@ -83,7 +83,7 @@
 </head>
 <body>
 
-<header class="hdr">BJJ Techniques</header>
+<header class="hdr">BJJ Techniques (<span id="tech-count"></span>)</header>
 
 <div class="wrap" id="wrap">
   <span style="color:#444;font-size:.8rem;letter-spacing:.1em">Loading…</span>
@@ -101,6 +101,8 @@
 
   const list = Array.isArray(window.TOD_CONFIG?.techniques)
     ? window.TOD_CONFIG.techniques : [];
+
+  document.getElementById('tech-count').textContent = list.length;
 
   const wrap = document.getElementById('wrap');
 
