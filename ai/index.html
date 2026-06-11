@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #0f0f13;
+      color: #e8e8f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      margin-bottom: 2.5rem;
+      color: #c0c0d8;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.25rem;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 2rem 1rem;
+      border-radius: 16px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+      background: var(--bg);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+    }
+
+    .card:hover, .card:focus-visible {
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      filter: brightness(1.12);
+      outline: none;
+    }
+
+    .card svg {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .card-desc {
+      font-size: 0.72rem;
+      font-weight: 400;
+      opacity: 0.82;
+      text-align: center;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    /* Brand colours */
+    .card-gpt       { --bg: linear-gradient(135deg, #10a37f 0%, #0d8c6d 100%); }
+    .card-gemini    { --bg: linear-gradient(135deg, #4285f4 0%, #1a73e8 50%, #8430ce 100%); }
+    .card-copilot   { --bg: linear-gradient(135deg, #0078d4 0%, #005a9e 100%); }
+    .card-perplexity{ --bg: linear-gradient(135deg, #20b2aa 0%, #127e79 100%); }
+    .card-claude    { --bg: linear-gradient(135deg, #c47a3e 0%, #a0582a 100%); }
+    .card-notion    { --bg: linear-gradient(135deg, #3d3d3d 0%, #1a1a1a 100%); }
+    .card-zapier    { --bg: linear-gradient(135deg, #ff4a00 0%, #cc3a00 100%); }
+    .card-make      { --bg: linear-gradient(135deg, #6d00cc 0%, #4b0099 100%); }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.78rem;
+      color: #55556a;
+    }
+
+    @media (max-width: 400px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <h1>AI Dashboard</h1>
+
+  <div class="grid">
+
+    <a class="card card-claude" href="https://claude.ai" target="_blank" rel="noopener">
+      <!-- Claude / Anthropic icon -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M13.827 3.52h3.603L12 16.518 6.57 3.521h3.603l1.827 4.595 1.827-4.595Z" fill="white"/>
+        <path d="m16.427 14.654 1.827 4.823H14.65l-1.827-4.823h3.604Z" fill="white" opacity="0.7"/>
+        <path d="M7.574 14.654 5.747 19.477H9.35l1.827-4.823H7.574Z" fill="white" opacity="0.7"/>
+      </svg>
+      Claude
+      <span class="card-desc">analiza problemu,<br>projekt, architektura</span>
+    </a>
+
+    <a class="card card-gpt" href="https://chat.openai.com" target="_blank" rel="noopener">
+      <!-- OpenAI logo -->
+      <svg viewBox="0 0 41 41" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835A9.964 9.964 0 0 0 18.306.5a10.079 10.079 0 0 0-9.614 6.977 9.967 9.967 0 0 0-6.664 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 7.516 3.35 10.078 10.078 0 0 0 9.617-6.981 9.967 9.967 0 0 0 6.663-4.834 10.079 10.079 0 0 0-1.243-11.813ZM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496ZM6.392 31.006a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744ZM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L7.044 23.86a7.504 7.504 0 0 1-2.747-10.24Zm27.658 6.437-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13Zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763Zm-21.063 6.929-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225Zm1.829-3.943 4.33-2.501 4.332 2.5v4.999l-4.331 2.5-4.331-2.5V18Z" fill="currentColor"/>
+      </svg>
+      ChatGPT
+      <span class="card-desc">analiza problemu,<br>projekt, architektura</span>
+    </a>
+
+    <a class="card card-gemini" href="https://gemini.google.com" target="_blank" rel="noopener">
+      <!-- Gemini star icon -->
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M14 2C14 2 13.23 9.41 10.41 12.24C7.59 15.06 0 14 0 14C0 14 7.59 12.94 10.41 15.76C13.23 18.59 14 26 14 26C14 26 14.77 18.59 17.59 15.76C20.41 12.94 28 14 28 14C28 14 20.41 15.06 17.59 12.24C14.77 9.41 14 2 14 2Z" fill="white"/>
+      </svg>
+      Gemini
+      <span class="card-desc">analiza problemu,<br>projekt, architektura</span>
+    </a>
+
+    <a class="card card-perplexity" href="https://www.perplexity.ai" target="_blank" rel="noopener">
+      <!-- Perplexity-style icon -->
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M16 3 L29 10 L29 22 L16 29 L3 22 L3 10 Z" stroke="white" stroke-width="2" fill="none"/>
+        <line x1="16" y1="3" x2="16" y2="29" stroke="white" stroke-width="2"/>
+        <line x1="3" y1="10" x2="29" y2="22" stroke="white" stroke-width="1.5" opacity="0.6"/>
+        <line x1="29" y1="10" x2="3" y2="22" stroke="white" stroke-width="1.5" opacity="0.6"/>
+      </svg>
+      Perplexity
+      <span class="card-desc">szybki research<br>i dokumentacja</span>
+    </a>
+
+    <a class="card card-copilot" href="https://copilot.microsoft.com" target="_blank" rel="noopener">
+      <!-- Copilot / simple plane icon -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm-1 14H9V8h2v8Zm4 0h-2V8h2v8Z" fill="white"/>
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2Zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8Zm-1-5h2v2h-2zm0-8h2v6h-2z" fill="white" opacity="0"/>
+        <text x="4" y="17" font-size="11" font-family="Segoe UI,sans-serif" font-weight="700" fill="white">Co</text>
+      </svg>
+      Copilot
+      <span class="card-desc">pisanie kodu,<br>dokumenty, meetingi</span>
+    </a>
+
+  </div>
+
+  <div class="grid" style="margin-top:1.25rem">
+
+    <a class="card card-notion" href="https://www.notion.com/product/ai" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.212-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447Zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.934Zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279V9.62l-1.215-.14c-.093-.514.28-.887.747-.933l3.222-.514Z" fill="white"/>
+      </svg>
+      Notion AI
+      <span class="card-desc">dokumenty,<br>podsumowania, meetingi</span>
+    </a>
+
+    <a class="card card-zapier" href="https://zapier.com" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 2.25A9.75 9.75 0 1 0 21.75 12 9.761 9.761 0 0 0 12 2.25Zm4.5 10.658H13.09l2.302 2.302a.563.563 0 0 1-.796.796l-2.302-2.302v3.41a.563.563 0 1 1-1.125 0v-3.41l-2.302 2.302a.563.563 0 0 1-.796-.796l2.302-2.302H6.967a.563.563 0 1 1 0-1.125h3.407L8.073 9.481a.563.563 0 0 1 .796-.796l2.303 2.303V7.578a.563.563 0 1 1 1.125 0v3.41l2.302-2.303a.563.563 0 0 1 .796.796l-2.302 2.302h3.407a.563.563 0 1 1 0 1.125Z" fill="white"/>
+      </svg>
+      Zapier
+      <span class="card-desc">automatyzacja<br>powtarzalnych procesów</span>
+    </a>
+
+    <a class="card card-make" href="https://www.make.com" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="12" cy="12" r="2.5" fill="white"/>
+        <circle cx="5" cy="8" r="2" fill="white" opacity="0.8"/>
+        <circle cx="19" cy="8" r="2" fill="white" opacity="0.8"/>
+        <circle cx="5" cy="16" r="2" fill="white" opacity="0.8"/>
+        <circle cx="19" cy="16" r="2" fill="white" opacity="0.8"/>
+        <line x1="7" y1="8" x2="9.5" y2="11" stroke="white" stroke-width="1.5" opacity="0.7"/>
+        <line x1="17" y1="8" x2="14.5" y2="11" stroke="white" stroke-width="1.5" opacity="0.7"/>
+        <line x1="7" y1="16" x2="9.5" y2="13" stroke="white" stroke-width="1.5" opacity="0.7"/>
+        <line x1="17" y1="16" x2="14.5" y2="13" stroke="white" stroke-width="1.5" opacity="0.7"/>
+      </svg>
+      Make
+      <span class="card-desc">automatyzacja<br>powtarzalnych procesów</span>
+    </a>
+
+  </div>
+
+  <footer>&copy; 2026 shivioua</footer>
+</body>
+</html>
