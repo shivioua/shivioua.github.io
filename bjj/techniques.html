@@ -90,8 +90,7 @@
       background: linear-gradient(to top, rgba(0,0,0,.92) 60%, transparent);
       pointer-events: none;
     }
-    .ftr a { pointer-events: all; }
-    .ftr a { color: var(--yellow); text-decoration: none; }
+    .ftr a { pointer-events: all; color: var(--yellow); text-decoration: none; }
     .ftr a:hover { text-decoration: underline; }
   </style>
 </head>
@@ -103,7 +102,9 @@
   <span style="color:#444;font-size:.8rem;letter-spacing:.1em">Loading…</span>
 </div>
 
-<footer class="ftr"><a href="https://shivioua.github.io" target="_blank" rel="noopener">&copy; Shivioua</a> &nbsp;&middot;&nbsp; last update: <span id="last-update"></span></footer>
+<footer class="ftr"><a href="https://shivioua.github.io" target="_blank" rel="noopener noreferrer">&copy; Shivioua</a> &nbsp;&middot;&nbsp; last update: <span id="last-update"></span></footer>
+
+<noscript><p style="color:#888;text-align:center;padding:2rem">JavaScript is required to use this page.</p></noscript>
 
 <script src="techniques-cfg.js"></script>
 <script>
@@ -133,16 +134,39 @@
     const href = safeURL(pick.url || '');
     const id   = Number(pick.id);
 
-    wrap.innerHTML = `
-      ${!requestedId ? `<button class="btn-next" onclick="location.reload()" title="Load another random technique">Random ↻</button>` : ''}
-      <hr>
-      ${href
-        ? `<a class="num-link" href="${href}" target="_blank" rel="noopener">#${id}</a>`
-        : `<span class="num-link" style="cursor:default">#${id}</span>`
-      }
-      <hr>
-      ${!requestedId ? `<button class="btn-next" onclick="location.reload()" title="Load another random technique">Random ↻</button>` : ''}
-    `;
+    // Set page title dynamically
+    document.title = `BJJ Technique #${id}`;
+
+    // Build elements via DOM API to avoid HTML injection via URL
+    const btnNext = () => {
+      const b = document.createElement('button');
+      b.className = 'btn-next';
+      b.title = 'Load another random technique';
+      b.textContent = 'Random ↻';
+      b.addEventListener('click', () => location.reload());
+      return b;
+    };
+
+    const numEl = document.createElement(href ? 'a' : 'span');
+    numEl.className = 'num-link';
+    numEl.textContent = `#${id}`;
+    if (href) {
+      numEl.href = href;
+      numEl.target = '_blank';
+      numEl.rel = 'noopener noreferrer';
+    } else {
+      numEl.style.cursor = 'default';
+    }
+
+    const hr1 = document.createElement('hr');
+    const hr2 = document.createElement('hr');
+
+    if (!requestedId) wrap.appendChild(btnNext());
+    wrap.appendChild(hr1);
+    wrap.appendChild(numEl);
+    wrap.appendChild(hr2);
+    if (!requestedId) wrap.appendChild(btnNext());
+    wrap.querySelector('.\x6coading')?.remove();
   }
 </script>
 
