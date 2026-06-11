@@ -126,7 +126,10 @@
   if (!list.length) {
     wrap.innerHTML = '<p class="err">No techniques configured.</p>';
   } else {
-    const pick = list[Math.floor(Math.random() * list.length)];
+    const requestedId = new URLSearchParams(location.search).get('id');
+    const pick = requestedId
+      ? (list.find(t => String(t.id) === requestedId) ?? list[Math.floor(Math.random() * list.length)])
+      : list[Math.floor(Math.random() * list.length)];
     const href = safeURL(pick.url || '');
     const id   = Number(pick.id);
 
