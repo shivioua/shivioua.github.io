@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────────
 
 window.TOD_CONFIG = {
-  lastUpdate: "2026-06-13",
+  lastUpdate: "2026-06-14",
   techniques: [
     { id:  1, url: "https://www.youtube.com/watch?v=r6mDDpc5474" },
     { id:  2, url: "https://www.youtube.com/shorts/VKxCRh1jODk" },
@@ -170,6 +170,7 @@ window.TOD_CONFIG = {
     { id: 156, url: "https://www.youtube.com/watch?v=Zy2HZcdsdOg" }, 
     { id: 157, url: "https://www.youtube.com/watch?v=GCN0zvbMuqU" }, 
     { id: 158, url: "https://www.instagram.com/reels/DZaAFhAhDoB/" }, 
-    { id: 159, url: "https://www.facebook.com/watch/?v=36239234465692040" }
+    { id: 159, url: "https://www.facebook.com/watch/?v=36239234465692040" },
+    { id: 160, url: "https://www.facebook.com/reel/2123683081884545" }
   ]
 };
