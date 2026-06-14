@@ -36,6 +36,8 @@
       background: linear-gradient(to bottom, rgba(0,0,0,.95) 60%, transparent);
     }
     .hdr .acc { color: var(--yellow); }
+    .hdr a { color: var(--yellow); text-decoration: none; }
+    .hdr a:hover { text-decoration: underline; }
 
     /* ── LAYOUT ── */
     .wrap {
@@ -96,7 +98,7 @@
 </head>
 <body>
 
-<header class="hdr">BJJ Techniques (<span id="tech-count"></span>)</header>
+<header class="hdr"><a href="./techniques.html">BJJ Techniques</a> (<span id="tech-count"></span>)</header>
 
 <div class="wrap" id="wrap">
   <span style="color:#444;font-size:.8rem;letter-spacing:.1em">Loading…</span>
