@@ -10,7 +10,7 @@
 // ─────────────────────────────────────────────────────────────────
 
 window.TOD_CONFIG = {
-  lastUpdate: "2026-06-14",
+  lastUpdate: "2026-07-01",
   techniques: [
     { id:  1, url: "https://www.youtube.com/watch?v=r6mDDpc5474" },
     { id:  2, url: "https://www.youtube.com/shorts/VKxCRh1jODk" },
@@ -171,6 +171,49 @@ window.TOD_CONFIG = {
     { id: 157, url: "https://www.youtube.com/watch?v=GCN0zvbMuqU" }, 
     { id: 158, url: "https://www.instagram.com/reels/DZaAFhAhDoB/" }, 
     { id: 159, url: "https://www.facebook.com/watch/?v=36239234465692040" },
-    { id: 160, url: "https://www.facebook.com/reel/2123683081884545" }
+    { id: 160, url: "https://www.facebook.com/reel/2123683081884545" }, 
+    { id: 161, url: "https://www.facebook.com/reel/1664007091284454" },
+    { id: 162, url: "https://www.facebook.com/reel/2069149276977041" },
+    { id: 163, url: "https://www.facebook.com/reel/724872520687896" },
+    { id: 164, url: "https://www.facebook.com/reel/1311515144167256" }, 
+    // Snap down for BJJ (Lachlan Giles)
+    { id: 165, url: "https://www.youtube.com/watch?v=BjvWqnaC5AI" }, 
+    // body lock
+    { id: 166, url: "https://www.youtube.com/watch?v=r-FNcolHsg4" },
+    { id: 167, url: "https://www.youtube.com/watch?v=we3wrU-Ctbw" },
+    { id: 168, url: "https://www.youtube.com/watch?v=spB8qALp5rA" },
+    { id: 169, url: "https://www.youtube.com/watch?v=ce7g__eV5iA" },
+    { id: 170, url: "https://www.youtube.com/watch?v=mk-kJx2yLYY" },
+    // side control frame building
+    { id: 171, url: "https://www.youtube.com/watch?v=N6yWdr2kJRI" },
+    { id: 172, url: "https://www.youtube.com/watch?v=2rFuFFverLg" },
+    // headquaters
+    { id: 173, url: "https://www.youtube.com/watch?v=quM3u9Jxthg" },
+    { id: 174, url: "https://www.youtube.com/watch?v=z3-Yb08-VhQ" },
+    { id: 175, url: "https://www.youtube.com/watch?v=WFaBuxpRM7U" },
+    { id: 176, url: "https://www.youtube.com/watch?v=BgcSkD9-YUU" },
+    { id: 177, url: "https://www.youtube.com/watch?v=YjNkzpX9_DI" },
+    { id: 178, url: "https://www.youtube.com/watch?v=3x7Mgxcy3Wo" },
+    { id: 179, url: "https://www.youtube.com/watch?v=pMmyD-sD7oM" },
+    { id: 180, url: "https://www.youtube.com/watch?v=GSq-dig3Ag8" },
+    { id: 181, url: "https://www.youtube.com/watch?v=OdscGUlottI" },
+    // leg drag
+    { id: 182, url: "https://www.youtube.com/shorts/xjm2WoMfBq8" },
+    { id: 183, url: "https://www.youtube.com/shorts/wvjReqf-SpM" },
+    { id: 184, url: "https://www.youtube.com/watch?v=ZyNXERJtwDc" },
+    { id: 185, url: "https://www.youtube.com/watch?v=7II5bP00TsQ" },
+    { id: 186, url: "https://www.youtube.com/shorts/46reRe4-iKQ" },
+    { id: 187, url: "https://www.youtube.com/watch?v=xVIuZaJTb1o" },
+    { id: 188, url: "https://www.youtube.com/watch?v=4c-v1OEPukc" },
+    { id: 189, url: "https://www.youtube.com/watch?v=djOPJWmQmT0" },
+    { id: 190, url: "https://www.youtube.com/watch?v=MTPxvLfW_co" },
+    { id: 191, url: "https://www.youtube.com/watch?v=q6h73eHd2YM" },
+    // float passing
+    { id: 192, url: "https://www.youtube.com/watch?v=wbkhWZk6o-U" },
+    { id: 193, url: "https://www.youtube.com/watch?v=6g67pwVcK6U" },
+    { id: 194, url: "https://www.youtube.com/watch?v=X3gjk5iQx3Q" },
+    { id: 195, url: "https://www.youtube.com/watch?v=iahli8rEm6c" },
+    // ---
+    { id: 196, url: "https://www.youtube.com/watch?v=i9rA2rDb05k" }
   ]
 };
