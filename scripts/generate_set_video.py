@@ -304,6 +304,11 @@ def main() -> int:
         )
         track["_duration"] = end_sec - start_sec
 
+    # xfade removes (N-1)*transition_duration from total video length.
+    # Compensate by extending the last chunk so video duration == audio duration.
+    if transition_duration > 0 and len(tracklist) > 1:
+        tracklist[-1]["_duration"] += (len(tracklist) - 1) * transition_duration
+
     youtube_title = derive_youtube_title(metadata)
     output_path = derive_output_path(metadata, youtube_title)
     output_path.parent.mkdir(parents=True, exist_ok=True)
