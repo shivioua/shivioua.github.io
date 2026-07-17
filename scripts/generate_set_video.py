@@ -55,19 +55,39 @@ def get_audio_duration(audio_path: Path) -> float:
     return MP3(str(audio_path)).info.length
 
 
-def generate_profile_settings(set_type: str) -> tuple[str, float]:
-    """Return (zoom_formula, fps) tuned for each set style."""
+def generate_profile_settings(set_type: str) -> tuple[str, str, str, float]:
+    """Return (z_formula, x_formula, y_formula, fps) tuned for each set style.
+
+    Pan formulas use zoompan variables: iw/ih = input size, zoom = current zoom,
+    on = output frame number (1-based), d = total frames.
+    Range of x: 0 .. (iw - iw/zoom).  Range of y: 0 .. (ih - ih/zoom).
+    """
     if set_type == "progressive_awake":
-        # Very slow, hypnotic drift — reaches max zoom (1.15x) in ~24s
-        return "min(zoom+0.00025,1.15)", 25.0
+        # Very slow zoom (max 1.15x in ~24s) + gentle top-left → bottom-right drift
+        return (
+            "min(zoom+0.00025,1.15)",
+            "(iw-iw/zoom)*on/d",
+            "(ih-ih/zoom)*on/d",
+            25.0,
+        )
     if set_type == "quantum_energy":
-        # Aggressive, dynamic camera movement — reaches max zoom (1.25x) in ~11s
-        return "min(zoom+0.0009,1.25)", 25.0
+        # Fast zoom (max 1.25x in ~11s) + top-right → bottom-left sweep
+        return (
+            "min(zoom+0.0009,1.25)",
+            "(iw-iw/zoom)*(d-on)/d",
+            "(ih-ih/zoom)*on/d",
+            25.0,
+        )
     if set_type == "fresh_dance":
-        # Standard fresh radio-style movement — reaches max zoom (1.20x) in ~18s
-        return "min(zoom+0.00045,1.20)", 25.0
+        # Medium zoom (max 1.20x in ~18s) + bottom-left → top-right drift
+        return (
+            "min(zoom+0.00045,1.20)",
+            "(iw-iw/zoom)*on/d",
+            "(ih-ih/zoom)*(d-on)/d",
+            25.0,
+        )
     # Fallback: static image
-    return "1", 25.0
+    return "1", "0", "0", 25.0
 
 
 def build_chunk_command(
@@ -303,7 +323,7 @@ def main() -> int:
     audio_bitrate = str(
         metadata.get("output_audio_bitrate") or video.get("audio_bitrate", "320k")
     )
-    zoom_formula, fps = generate_profile_settings(set_type)
+    zoom_formula, x_formula, y_formula, fps = generate_profile_settings(set_type)
 
     tmp_dir = tempfile.mkdtemp()
     temp_video_files: list[Path] = []
@@ -325,7 +345,8 @@ def main() -> int:
 
             filter_complex = (
                 f"scale={intermediate_scale}:-1,"
-                f"zoompan=z='{zoom_formula}':d={total_frames}:s={width}x{height}:fps={fps},"
+                f"zoompan=z='{zoom_formula}':x='{x_formula}':y='{y_formula}'"
+                f":d={total_frames}:s={width}x{height}:fps={fps},"
                 f"drawtext=fontfile='{font_path}':text='{project_text}':"
                 f"x=50:y=50:fontsize=36:fontcolor=white:alpha=0.5:"
                 f"box=1:boxcolor=black@0.4:boxborderw=10,"
