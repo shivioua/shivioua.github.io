@@ -7,10 +7,14 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
+from datetime import datetime
 from pathlib import Path
 
-
-IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff", ".tif", ".gif"}
+try:
+    from mutagen.mp3 import MP3  # type: ignore
+except ImportError:
+    MP3 = None  # type: ignore
 
 
 def load_metadata(path: Path) -> dict:
@@ -28,88 +32,105 @@ def load_metadata(path: Path) -> dict:
     raise SystemExit("Unsupported metadata format. Use .yaml, .yml or .json")
 
 
-def collect_slide_images(images_dir: Path) -> list[Path]:
-    return sorted(
-        p for p in images_dir.iterdir()
-        if p.is_file() and p.suffix.lower() in IMAGE_EXTENSIONS
-    )
-
-
 def _escape_concat_path(path: Path) -> str:
     return path.as_posix().replace("'", "\\'")
 
 
-def write_concat_file(
-    cover_path: Path,
-    cover_duration: float,
-    slide_images: list[Path],
-    slide_duration: float,
-    tmp_file: Path,
-) -> None:
-    lines: list[str] = []
-    all_images = [cover_path] + slide_images
-    durations = [cover_duration] + [slide_duration] * len(slide_images)
-
-    for img, dur in zip(all_images, durations):
-        lines.append(f"file '{_escape_concat_path(img)}'\n")
-        lines.append(f"duration {dur}\n")
-
-    # Repeat last image — required by concat demuxer for correct last-frame duration
-    if all_images:
-        lines.append(f"file '{_escape_concat_path(all_images[-1])}'\n")
-
-    tmp_file.write_text("".join(lines), encoding="utf-8")
+def time_to_seconds(t_str: str) -> float:
+    """Convert MM:SS or HH:MM:SS format to seconds."""
+    parts = list(map(int, t_str.split(":")))
+    if len(parts) == 2:
+        return float(parts[0] * 60 + parts[1])
+    if len(parts) == 3:
+        return float(parts[0] * 3600 + parts[1] * 60 + parts[2])
+    return 0.0
 
 
-def build_ffmpeg_command(
-    metadata: dict, ffmpeg_path: str, concat_file: Path | None = None
+def get_audio_duration(audio_path: Path) -> float:
+    """Return audio duration in seconds using mutagen."""
+    if MP3 is None:
+        raise SystemExit(
+            "Getting audio duration requires mutagen. Install it with: pip install mutagen"
+        )
+    return MP3(str(audio_path)).info.length
+
+
+def generate_profile_settings(set_type: str) -> tuple[str, float]:
+    """Return (zoom_formula, fps) tuned for each set style."""
+    if set_type == "progressive_awake":
+        # Very slow, hypnotic drift — reaches max zoom (1.15x) in ~24s
+        return "min(zoom+0.00025,1.15)", 25.0
+    if set_type == "quantum_energy":
+        # Aggressive, dynamic camera movement — reaches max zoom (1.25x) in ~11s
+        return "min(zoom+0.0009,1.25)", 25.0
+    if set_type == "fresh_dance":
+        # Standard fresh radio-style movement — reaches max zoom (1.20x) in ~18s
+        return "min(zoom+0.00045,1.20)", 25.0
+    # Fallback: static image
+    return "1", 25.0
+
+
+def build_chunk_command(
+    ffmpeg_path: str,
+    img_path: Path,
+    duration: float,
+    filter_complex: str,
+    output_path: Path,
+    encoder: str,
+    crf: str,
+    preset: str,
+    fps: float,
 ) -> list[str]:
-    video = metadata.get("video", {})
-    width = int(video.get("width", 1920))
-    height = int(video.get("height", 1080))
-    audio_bitrate = str(metadata.get("output_audio_bitrate") or video.get("audio_bitrate", "192k"))
-    crf = str(video.get("crf", 20))
-    preset = str(video.get("preset", "medium"))
-
-    audio_path = str(metadata["audio_path"])
-    output_path = str(metadata["output_path"])
-
-    scale_pad = (
-        f"scale={width}:{height}:force_original_aspect_ratio=decrease,"
-        f"pad={width}:{height}:(ow-iw)/2:(oh-ih)/2,format=yuv420p"
-    )
-
-    if concat_file is not None:
-        video_input_args = ["-f", "concat", "-safe", "0", "-i", str(concat_file)]
+    if encoder == "h264_qsv":
+        # Upload frames to Intel GPU just before encoding; CPU handles all filters.
+        # -init_hw_device and -filter_hw_device are required so hwupload has a device context.
+        vf = filter_complex + ",hwupload=extra_hw_frames=64,format=qsv"
+        codec_args = ["-c:v", "h264_qsv", "-global_quality", crf, "-preset", preset]
+        pix_args: list[str] = []
+        color_args: list[str] = []
+        hw_args = ["-init_hw_device", "qsv=hw", "-filter_hw_device", "hw"]
     else:
-        video_input_args = ["-loop", "1", "-i", str(metadata["cover_path"])]
+        vf = filter_complex
+        codec_args = ["-c:v", "libx264", "-crf", crf, "-preset", preset]
+        pix_args = ["-pix_fmt", "yuv420p"]
+        # Declare correct color metadata so players don't misinterpret JPEG full-range source.
+        color_args = ["-colorspace", "bt709", "-color_primaries", "bt709",
+                      "-color_trc", "bt709", "-color_range", "tv"]
+        hw_args: list[str] = []
 
     return [
-        ffmpeg_path,
-        "-y",
-        *video_input_args,
-        "-i",
-        audio_path,
-        "-vf",
-        scale_pad,
-        "-c:v",
-        "libx264",
-        "-tune",
-        "stillimage",
-        "-crf",
-        crf,
-        "-preset",
-        preset,
-        "-c:a",
-        "aac",
-        "-b:a",
-        audio_bitrate,
-        "-pix_fmt",
-        "yuv420p",
+        ffmpeg_path, "-y",
+        "-hide_banner", "-loglevel", "error",
+        *hw_args,
+        "-threads", "0",
+        "-loop", "1", "-i", str(img_path),
+        "-t", str(duration),
+        "-filter_complex", vf,
+        *codec_args,
+        *pix_args,
+        *color_args,
+        "-r", str(fps),
+        str(output_path),
+    ]
+
+
+def build_final_command(
+    ffmpeg_path: str,
+    concat_file: Path,
+    audio_path: Path,
+    output_path: Path,
+    audio_bitrate: str,
+) -> list[str]:
+    return [
+        ffmpeg_path, "-y",
+        "-f", "concat", "-safe", "0", "-i", str(concat_file),
+        "-i", str(audio_path),
+        "-c:v", "copy",
+        "-c:a", "aac", "-b:a", audio_bitrate,
+        "-map", "0:v:0", "-map", "1:a:0",
         "-shortest",
-        "-movflags",
-        "+faststart",
-        output_path,
+        "-movflags", "+faststart",
+        str(output_path),
     ]
 
 
@@ -165,23 +186,9 @@ def main() -> int:
         help="Path to ffmpeg executable. Overrides ffmpeg_path from metadata.",
     )
     parser.add_argument(
-        "--images-dir",
-        help="Directory with additional slide images. Overrides images_dir from metadata.",
-    )
-    parser.add_argument(
-        "--cover-duration",
-        type=float,
-        help="Seconds to display the cover image in slideshow mode. Overrides cover_duration from metadata.",
-    )
-    parser.add_argument(
-        "--slide-duration",
-        type=float,
-        help="Seconds to display each slide image. Overrides slide_duration from metadata.",
-    )
-    parser.add_argument(
         "--print-command",
         action="store_true",
-        help="Print the ffmpeg command without running it.",
+        help="Print all ffmpeg commands without running them.",
     )
     args = parser.parse_args()
 
@@ -191,64 +198,175 @@ def main() -> int:
 
     metadata = load_metadata(metadata_path)
     validate_paths(metadata)
-    ffmpeg_path = args.ffmpeg_path or metadata.get("ffmpeg_path") or "ffmpeg"
+
+    ffmpeg_path = str(args.ffmpeg_path or metadata.get("ffmpeg_path") or "ffmpeg")
+    set_type = str(metadata.get("set_type", "progressive_awake"))
+
+    font_path_raw = str(metadata.get("font_path", "Arial"))
+    font_resolved = Path(font_path_raw)
+    if not font_resolved.is_absolute():
+        font_resolved = Path(__file__).parent / font_path_raw
+    if font_resolved.suffix and not font_resolved.exists():
+        raise SystemExit(f"Font file not found: {font_resolved}")
+    font_path = str(font_resolved).replace("\\", "/").replace(":", "\\:")
+
+    audio_file_path = Path(metadata["audio_path"])
+    total_duration = get_audio_duration(audio_file_path)
+
+    video = metadata.get("video", {})
+    width = int(video.get("width", 1920))
+    height = int(video.get("height", 1080))
+    crf = str(video.get("crf", 22))
+    preset = str(video.get("preset", "fast"))
+    encoder = str(video.get("encoder", "libx264"))
+    intermediate_scale = int(video.get("intermediate_scale", 4000))
+
+    tracklist = metadata.get("tracklist") or []
+    if not tracklist:
+        raise SystemExit("Error: Tracklist is empty in metadata.")
+    for i, track in enumerate(tracklist):
+        if not isinstance(track, dict) or "time" not in track or "track_name" not in track:
+            raise SystemExit(
+                f"Tracklist item {i} must be a dict with 'time' and 'track_name' fields. "
+                "Got: " + repr(track)
+            )
+
+    # Compute per-track duration from consecutive timestamps
+    for i, track in enumerate(tracklist):
+        start_sec = time_to_seconds(track["time"])
+        end_sec = (
+            time_to_seconds(tracklist[i + 1]["time"])
+            if i < len(tracklist) - 1
+            else total_duration
+        )
+        track["_duration"] = end_sec - start_sec
 
     youtube_title = derive_youtube_title(metadata)
     output_path = derive_output_path(metadata, youtube_title)
-    metadata["output_path"] = str(output_path)
-    metadata.setdefault("youtube", {})
-    metadata["youtube"]["title"] = youtube_title
-
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    images_dir_raw = args.images_dir or metadata.get("images_dir")
-    cover_duration = float(
-        args.cover_duration if args.cover_duration is not None
-        else (metadata.get("cover_duration") or 10)
+    audio_bitrate = str(
+        metadata.get("output_audio_bitrate") or video.get("audio_bitrate", "320k")
     )
-    slide_duration = float(
-        args.slide_duration if args.slide_duration is not None
-        else (metadata.get("slide_duration") or 10)
-    )
+    zoom_formula, fps = generate_profile_settings(set_type)
 
-    tmp_dir: str | None = None
-    concat_file: Path | None = None
+    tmp_dir = tempfile.mkdtemp()
+    temp_video_files: list[Path] = []
 
     try:
-        if images_dir_raw:
-            images_dir = Path(str(images_dir_raw))
-            if not images_dir.is_dir():
-                raise SystemExit(f"images_dir is not a directory: {images_dir}")
-            slide_images = collect_slide_images(images_dir)
-            tmp_dir = tempfile.mkdtemp()
-            concat_file = Path(tmp_dir) / "concat_list.txt"
-            write_concat_file(
-                cover_path=Path(str(metadata["cover_path"])),
-                cover_duration=cover_duration,
-                slide_images=slide_images,
-                slide_duration=slide_duration,
-                tmp_file=concat_file,
-            )
-            print(f"Slideshow: cover ({cover_duration}s) + {len(slide_images)} slides ({slide_duration}s each)")
+        chunk_commands: list[tuple[dict, list[str]]] = []
 
-        command = build_ffmpeg_command(metadata, str(ffmpeg_path), concat_file=concat_file)
+        for i, track in enumerate(tracklist):
+            img_path = Path(str(track.get("image") or metadata["cover_path"]))
+            dur = track["_duration"]
+            total_frames = int(fps * dur)
+
+            # Escape special chars for FFmpeg drawtext text values
+            def _esc(s: str) -> str:
+                return s.replace("\\", "\\\\").replace(":", "\\:").replace("'", "")
+
+            track_text = _esc(track["track_name"])
+            project_text = _esc(youtube_title)
+
+            filter_complex = (
+                f"scale={intermediate_scale}:-1,"
+                f"zoompan=z='{zoom_formula}':d={total_frames}:s={width}x{height}:fps={fps},"
+                f"drawtext=fontfile='{font_path}':text='{project_text}':"
+                f"x=50:y=50:fontsize=36:fontcolor=white:alpha=0.5:"
+                f"box=1:boxcolor=black@0.4:boxborderw=10,"
+                f"drawtext=fontfile='{font_path}':text='NOW PLAYING\\: {track_text}':"
+                f"x=50:y=H-120:fontsize=30:fontcolor=white:"
+                f"box=1:boxcolor=black@0.6:boxborderw=15"
+            )
+
+            chunk_output = Path(tmp_dir) / f"chunk_{i:04d}.mp4"
+            temp_video_files.append(chunk_output)
+
+            cmd = build_chunk_command(
+                ffmpeg_path=ffmpeg_path,
+                img_path=img_path,
+                duration=dur,
+                filter_complex=filter_complex,
+                output_path=chunk_output,
+                encoder=encoder,
+                crf=crf,
+                preset=preset,
+                fps=fps,
+            )
+            chunk_commands.append((track, cmd))
+
+        concat_file = Path(tmp_dir) / "concat_list.txt"
+        final_cmd = build_final_command(
+            ffmpeg_path=ffmpeg_path,
+            concat_file=concat_file,
+            audio_path=audio_file_path,
+            output_path=output_path,
+            audio_bitrate=audio_bitrate,
+        )
+
         if args.print_command:
-            print(subprocess.list2cmdline(command))
+            for _, cmd in chunk_commands:
+                print(subprocess.list2cmdline(cmd))
+            print(subprocess.list2cmdline(final_cmd))
             return 0
 
-        print(f"YouTube title: {youtube_title}")
-        print(f"Generating MP4: {output_path}")
+        wall_start = time.monotonic()
+        print(f"YouTube title : {youtube_title}")
+        print(f"Output        : {output_path}")
+        print(f"Profile       : {set_type.upper()} | Tracks: {len(tracklist)}")
+        print(f"Started       : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+        for i, (track, cmd) in enumerate(chunk_commands):
+            dur = track["_duration"]
+            chunk_start = time.monotonic()
+            print(f" -> [{i + 1}/{len(tracklist)}] Rendering: {track['track_name']} ({int(dur)}s)")
+            try:
+                completed = subprocess.run(cmd, check=False, capture_output=True)
+            except FileNotFoundError as exc:
+                raise SystemExit(
+                    f"ffmpeg executable not found: {ffmpeg_path}. "
+                    "Pass --ffmpeg-path or set ffmpeg_path in metadata."
+                ) from exc
+            # Print stderr filtering cosmetic fontconfig warnings (libfontconfig bypasses -loglevel).
+            stderr_text = completed.stderr.decode("utf-8", errors="replace")
+            for line in stderr_text.splitlines():
+                if not line.startswith("Fontconfig"):
+                    print(line, file=sys.stderr)
+                raise SystemExit(
+                    f"ffmpeg executable not found: {ffmpeg_path}. "
+                    "Pass --ffmpeg-path or set ffmpeg_path in metadata."
+                ) from exc
+            if completed.returncode != 0:
+                raise SystemExit(
+                    f"ffmpeg failed on chunk {i} with exit code {completed.returncode}."
+                )
+            chunk_elapsed = time.monotonic() - chunk_start
+            print(f"    Done in {chunk_elapsed:.1f}s (ratio {chunk_elapsed / dur:.2f}x realtime)")
+
+        with open(concat_file, "w", encoding="utf-8") as f:
+            for file_path in temp_video_files:
+                f.write(f"file '{_escape_concat_path(file_path)}'\n")
+
+        merge_start = time.monotonic()
+        print("Merging scenes and audio into final file...")
         try:
-            completed = subprocess.run(command, check=False)
+            completed = subprocess.run(final_cmd, check=False)
         except FileNotFoundError as exc:
             raise SystemExit(
-                f"ffmpeg executable not found: {ffmpeg_path}. Pass --ffmpeg-path or set ffmpeg_path in metadata."
+                f"ffmpeg executable not found: {ffmpeg_path}. "
+                "Pass --ffmpeg-path or set ffmpeg_path in metadata."
             ) from exc
+        print(f"Merge done in {time.monotonic() - merge_start:.1f}s")
+
+        total_elapsed = time.monotonic() - wall_start
+        mm, ss = divmod(int(total_elapsed), 60)
+        print(f"Finished      : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+        print(f"Total time    : {mm}m {ss}s")
+
         return completed.returncode
 
     finally:
-        if tmp_dir is not None:
-            shutil.rmtree(tmp_dir, ignore_errors=True)
+        shutil.rmtree(tmp_dir, ignore_errors=True)
 
 
 if __name__ == "__main__":
