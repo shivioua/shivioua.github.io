@@ -55,39 +55,25 @@ def get_audio_duration(audio_path: Path) -> float:
     return MP3(str(audio_path)).info.length
 
 
-def generate_profile_settings(set_type: str) -> tuple[str, str, str, float]:
-    """Return (z_formula, x_formula, y_formula, fps) tuned for each set style.
+def generate_profile_settings(set_type: str) -> tuple[str, float, float]:
+    """Return (z_formula, pan_period_seconds, fps).
 
-    Pan formulas use zoompan variables: iw/ih = input size, zoom = current zoom,
-    on = output frame number (1-based), d = total frames.
-    Range of x: 0 .. (iw - iw/zoom).  Range of y: 0 .. (ih - ih/zoom).
+    Pan uses a circular orbit: x=sin, y=-cos (90° phase offset), one full orbit
+    per pan_period_seconds.  With intermediate_scale=4000 and period<=65s the
+    peak velocity exceeds 1px/frame in the source image, eliminating the
+    integer-step quantization that causes visible choppiness on slow linear pans.
+    The orbit radius grows with zoom, creating a spiral-in effect during zoom-up.
     """
     if set_type == "progressive_awake":
-        # Very slow zoom (max 1.15x in ~24s) + gentle top-left → bottom-right drift
-        return (
-            "min(zoom+0.00025,1.15)",
-            "(iw-iw/zoom)*on/d",
-            "(ih-ih/zoom)*on/d",
-            25.0,
-        )
+        # Slow zoom (max 1.15x in ~24s) + calm 60s circular orbit
+        return "min(zoom+0.00025,1.15)", 60.0, 25.0
     if set_type == "quantum_energy":
-        # Fast zoom (max 1.25x in ~11s) + top-right → bottom-left sweep
-        return (
-            "min(zoom+0.0009,1.25)",
-            "(iw-iw/zoom)*(d-on)/d",
-            "(ih-ih/zoom)*on/d",
-            25.0,
-        )
+        # Fast zoom (max 1.25x in ~11s) + aggressive 20s orbit
+        return "min(zoom+0.0009,1.25)", 20.0, 25.0
     if set_type == "fresh_dance":
-        # Medium zoom (max 1.20x in ~18s) + bottom-left → top-right drift
-        return (
-            "min(zoom+0.00045,1.20)",
-            "(iw-iw/zoom)*on/d",
-            "(ih-ih/zoom)*(d-on)/d",
-            25.0,
-        )
-    # Fallback: static image
-    return "1", "0", "0", 25.0
+        # Medium zoom (max 1.20x in ~18s) + brisk 40s orbit
+        return "min(zoom+0.00045,1.20)", 40.0, 25.0
+    return "1", 60.0, 25.0
 
 
 def build_chunk_command(
@@ -323,7 +309,7 @@ def main() -> int:
     audio_bitrate = str(
         metadata.get("output_audio_bitrate") or video.get("audio_bitrate", "320k")
     )
-    zoom_formula, x_formula, y_formula, fps = generate_profile_settings(set_type)
+    zoom_formula, pan_period, fps = generate_profile_settings(set_type)
 
     tmp_dir = tempfile.mkdtemp()
     temp_video_files: list[Path] = []
@@ -335,6 +321,13 @@ def main() -> int:
             img_path = Path(str(track.get("image") or metadata["cover_path"]))
             dur = track["_duration"]
             total_frames = int(fps * dur)
+
+            # Circular orbit pan: x=sin, y=-cos gives clockwise orbit starting
+            # from (centre, top).  Period is fixed so peak velocity >=1px/frame
+            # in the source image, avoiding integer-step quantization artefacts.
+            period_frames = int(fps * pan_period)
+            x_formula = f"(iw-iw/zoom)*(0.5+0.5*sin(2*PI*on/{period_frames}))"
+            y_formula = f"(ih-ih/zoom)*(0.5-0.5*cos(2*PI*on/{period_frames}))"
 
             # Escape special chars for FFmpeg drawtext text values
             def _esc(s: str) -> str:
