@@ -58,22 +58,24 @@ def get_audio_duration(audio_path: Path) -> float:
 def generate_profile_settings(set_type: str) -> tuple[str, float, float]:
     """Return (z_formula, pan_period_seconds, fps).
 
-    Pan uses a circular orbit: x=sin, y=-cos (90° phase offset), one full orbit
-    per pan_period_seconds.  With intermediate_scale=4000 and period<=65s the
-    peak velocity exceeds 1px/frame in the source image, eliminating the
-    integer-step quantization that causes visible choppiness on slow linear pans.
-    The orbit radius grows with zoom, creating a spiral-in effect during zoom-up.
+    Pan uses a constant-velocity triangle wave bounce: x and y are in linear
+    sawtooth motion at 90° phase offset, so when x is at a turning point y is
+    at maximum speed and vice versa — the combined motion is always moving.
+    Triangle wave eliminates the velocity=0 pauses that sine/cosine produce at
+    their peaks, which appear as visible stutters/freezes.
+    intermediate_scale default is 8000 so each 1-source-pixel integer step
+    maps to only ~0.28 output pixels, making step artefacts imperceptible.
     """
     if set_type == "progressive_awake":
-        # Slow zoom (max 1.15x in ~24s) + calm 60s circular orbit
-        return "min(zoom+0.00025,1.15)", 60.0, 25.0
+        # Slow zoom (max 1.15x in ~24s) + 90s hypnotic drift (~0.93px/frame src)
+        return "min(zoom+0.00025,1.15)", 90.0, 25.0
     if set_type == "quantum_energy":
-        # Fast zoom (max 1.25x in ~11s) + aggressive 20s orbit
-        return "min(zoom+0.0009,1.25)", 20.0, 25.0
+        # Fast zoom (max 1.25x in ~11s) + 30s aggressive bounce (~2.79px/frame src)
+        return "min(zoom+0.0009,1.25)", 30.0, 25.0
     if set_type == "fresh_dance":
-        # Medium zoom (max 1.20x in ~18s) + brisk 40s orbit
-        return "min(zoom+0.00045,1.20)", 40.0, 25.0
-    return "1", 60.0, 25.0
+        # Medium zoom (max 1.20x in ~18s) + 60s fresh drift (~1.39px/frame src)
+        return "min(zoom+0.00045,1.20)", 60.0, 25.0
+    return "1", 90.0, 25.0
 
 
 def build_chunk_command(
@@ -279,7 +281,7 @@ def main() -> int:
     crf = str(video.get("crf", 22))
     preset = str(video.get("preset", "fast"))
     encoder = str(video.get("encoder", "libx264"))
-    intermediate_scale = int(video.get("intermediate_scale", 4000))
+    intermediate_scale = int(video.get("intermediate_scale", 8000))
     transition_duration = float(video.get("transition_duration", 0.0))
 
     tracklist = metadata.get("tracklist") or []
@@ -322,12 +324,16 @@ def main() -> int:
             dur = track["_duration"]
             total_frames = int(fps * dur)
 
-            # Circular orbit pan: x=sin, y=-cos gives clockwise orbit starting
-            # from (centre, top).  Period is fixed so peak velocity >=1px/frame
-            # in the source image, avoiding integer-step quantization artefacts.
+            # Triangle wave bounce: constant velocity, no zero-speed pauses.
+            # x and y are 90° out of phase so the combined path always moves.
+            # Formula: tri(t) = 1 - 2*|frac(t) - 0.5|  →  0→1→0 linear bounce.
             period_frames = int(fps * pan_period)
-            x_formula = f"(iw-iw/zoom)*(0.5+0.5*sin(2*PI*on/{period_frames}))"
-            y_formula = f"(ih-ih/zoom)*(0.5-0.5*cos(2*PI*on/{period_frames}))"
+            x_formula = (
+                f"(iw-iw/zoom)*(1-2*abs(mod(on/{period_frames},1)-0.5))"
+            )
+            y_formula = (
+                f"(ih-ih/zoom)*(1-2*abs(mod(on/{period_frames}+0.25,1)-0.5))"
+            )
 
             # Escape special chars for FFmpeg drawtext text values
             def _esc(s: str) -> str:
@@ -336,8 +342,14 @@ def main() -> int:
             track_text = _esc(track["track_name"])
             project_text = _esc(youtube_title)
 
+            # Scale source to fill the 16:9 intermediate canvas (any source AR),
+            # then centre-crop to the exact intermediate dimensions before zoompan.
+            # force_original_aspect_ratio=increase ensures the image always covers
+            # the canvas with no black bars, regardless of source aspect ratio.
+            inter_h = intermediate_scale * height // width  # e.g. 8000*1080//1920=4500
             filter_complex = (
-                f"scale={intermediate_scale}:-1,"
+                f"scale={intermediate_scale}:{inter_h}:force_original_aspect_ratio=increase,"
+                f"crop={intermediate_scale}:{inter_h}:(iw-{intermediate_scale})/2:(ih-{inter_h})/2,"
                 f"zoompan=z='{zoom_formula}':x='{x_formula}':y='{y_formula}'"
                 f":d={total_frames}:s={width}x{height}:fps={fps},"
                 f"drawtext=fontfile='{font_path}':text='{project_text}':"
