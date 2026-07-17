@@ -180,7 +180,7 @@ def build_final_xfade_command(
 
     return [
         ffmpeg_path, "-y",
-        "-hide_banner",
+        "-hide_banner", "-stats_period", "10",
         *input_args,
         "-filter_complex", filter_complex,
         "-map", "[vout]",
@@ -322,7 +322,12 @@ def main() -> int:
         for i, track in enumerate(tracklist):
             img_path = Path(str(track.get("image") or metadata["cover_path"]))
             dur = track["_duration"]
-            total_frames = int(fps * dur)
+            # Extend all chunks except the last by transition_duration so that
+            # xfade has real (moving) frames to blend during the transition.
+            # The overlap is consumed by xfade; total video length stays correct.
+            is_last = i == len(tracklist) - 1
+            render_dur = dur if (is_last or transition_duration <= 0) else dur + transition_duration
+            total_frames = int(fps * render_dur)
 
             # Triangle wave bounce: constant velocity, no zero-speed pauses.
             # x and y are 90° out of phase so the combined path always moves.
@@ -366,7 +371,7 @@ def main() -> int:
             cmd = build_chunk_command(
                 ffmpeg_path=ffmpeg_path,
                 img_path=img_path,
-                duration=dur,
+                duration=render_dur,
                 filter_complex=filter_complex,
                 output_path=chunk_output,
                 encoder=encoder,
