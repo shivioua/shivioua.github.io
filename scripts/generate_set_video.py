@@ -169,7 +169,7 @@ def build_final_xfade_command(
         cumulative_offset = 0.0
         prev_label = "[0:v]"
         for i in range(1, n):
-            cumulative_offset += durations[i - 1] - transition_duration
+            cumulative_offset += durations[i - 1]
             out_label = "[vout]" if i == n - 1 else f"[x{i:04d}]"
             parts.append(
                 f"{prev_label}[{i}:v]xfade=transition=fade"
@@ -303,11 +303,6 @@ def main() -> int:
             else total_duration
         )
         track["_duration"] = end_sec - start_sec
-
-    # xfade removes (N-1)*transition_duration from total video length.
-    # Compensate by extending the last chunk so video duration == audio duration.
-    if transition_duration > 0 and len(tracklist) > 1:
-        tracklist[-1]["_duration"] += (len(tracklist) - 1) * transition_duration
 
     youtube_title = derive_youtube_title(metadata)
     output_path = derive_output_path(metadata, youtube_title)
