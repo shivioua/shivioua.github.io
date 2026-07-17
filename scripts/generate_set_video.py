@@ -134,6 +134,60 @@ def build_final_command(
     ]
 
 
+def build_final_xfade_command(
+    ffmpeg_path: str,
+    video_files: list[Path],
+    audio_path: Path,
+    output_path: Path,
+    audio_bitrate: str,
+    durations: list[float],
+    transition_duration: float,
+    crf: str,
+    preset: str,
+) -> list[str]:
+    """Build a final merge command with cross-dissolve transitions between chunks."""
+    n = len(video_files)
+    audio_index = n
+
+    input_args: list[str] = []
+    for vf in video_files:
+        input_args += ["-i", str(vf)]
+    input_args += ["-i", str(audio_path)]
+
+    if n == 1:
+        filter_complex = "[0:v]null[vout]"
+    else:
+        parts: list[str] = []
+        cumulative_offset = 0.0
+        prev_label = "[0:v]"
+        for i in range(1, n):
+            cumulative_offset += durations[i - 1] - transition_duration
+            out_label = "[vout]" if i == n - 1 else f"[x{i:04d}]"
+            parts.append(
+                f"{prev_label}[{i}:v]xfade=transition=fade"
+                f":duration={transition_duration}:offset={cumulative_offset:.3f}{out_label}"
+            )
+            prev_label = f"[x{i:04d}]"
+        filter_complex = ";".join(parts)
+
+    return [
+        ffmpeg_path, "-y",
+        "-hide_banner",
+        *input_args,
+        "-filter_complex", filter_complex,
+        "-map", "[vout]",
+        "-map", f"{audio_index}:a:0",
+        "-c:v", "libx264", "-crf", crf, "-preset", preset,
+        "-pix_fmt", "yuv420p",
+        "-colorspace", "bt709", "-color_primaries", "bt709",
+        "-color_trc", "bt709", "-color_range", "tv",
+        "-c:a", "aac", "-b:a", audio_bitrate,
+        "-shortest",
+        "-movflags", "+faststart",
+        str(output_path),
+    ]
+
+
 def derive_youtube_title(metadata: dict) -> str:
     youtube = metadata.get("youtube", {}) or {}
     explicit_title = youtube.get("title")
@@ -220,6 +274,7 @@ def main() -> int:
     preset = str(video.get("preset", "fast"))
     encoder = str(video.get("encoder", "libx264"))
     intermediate_scale = int(video.get("intermediate_scale", 4000))
+    transition_duration = float(video.get("transition_duration", 0.0))
 
     tracklist = metadata.get("tracklist") or []
     if not tracklist:
@@ -295,14 +350,29 @@ def main() -> int:
             )
             chunk_commands.append((track, cmd))
 
-        concat_file = Path(tmp_dir) / "concat_list.txt"
-        final_cmd = build_final_command(
-            ffmpeg_path=ffmpeg_path,
-            concat_file=concat_file,
-            audio_path=audio_file_path,
-            output_path=output_path,
-            audio_bitrate=audio_bitrate,
-        )
+        durations = [t["_duration"] for t in tracklist]
+        if transition_duration > 0:
+            final_cmd = build_final_xfade_command(
+                ffmpeg_path=ffmpeg_path,
+                video_files=list(temp_video_files),
+                audio_path=audio_file_path,
+                output_path=output_path,
+                audio_bitrate=audio_bitrate,
+                durations=durations,
+                transition_duration=transition_duration,
+                crf=crf,
+                preset=preset,
+            )
+            concat_file: Path | None = None
+        else:
+            concat_file = Path(tmp_dir) / "concat_list.txt"
+            final_cmd = build_final_command(
+                ffmpeg_path=ffmpeg_path,
+                concat_file=concat_file,
+                audio_path=audio_file_path,
+                output_path=output_path,
+                audio_bitrate=audio_bitrate,
+            )
 
         if args.print_command:
             for _, cmd in chunk_commands:
@@ -332,10 +402,6 @@ def main() -> int:
             for line in stderr_text.splitlines():
                 if not line.startswith("Fontconfig"):
                     print(line, file=sys.stderr)
-                raise SystemExit(
-                    f"ffmpeg executable not found: {ffmpeg_path}. "
-                    "Pass --ffmpeg-path or set ffmpeg_path in metadata."
-                ) from exc
             if completed.returncode != 0:
                 raise SystemExit(
                     f"ffmpeg failed on chunk {i} with exit code {completed.returncode}."
@@ -343,12 +409,16 @@ def main() -> int:
             chunk_elapsed = time.monotonic() - chunk_start
             print(f"    Done in {chunk_elapsed:.1f}s (ratio {chunk_elapsed / dur:.2f}x realtime)")
 
-        with open(concat_file, "w", encoding="utf-8") as f:
-            for file_path in temp_video_files:
-                f.write(f"file '{_escape_concat_path(file_path)}'\n")
+        if concat_file is not None:
+            with open(concat_file, "w", encoding="utf-8") as f:
+                for file_path in temp_video_files:
+                    f.write(f"file '{_escape_concat_path(file_path)}'\n")
 
         merge_start = time.monotonic()
-        print("Merging scenes and audio into final file...")
+        if transition_duration > 0:
+            print(f"Merging with {transition_duration}s cross dissolve (re-encoding)...")
+        else:
+            print("Merging scenes and audio (stream copy)...")
         try:
             completed = subprocess.run(final_cmd, check=False)
         except FileNotFoundError as exc:
