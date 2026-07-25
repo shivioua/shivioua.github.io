@@ -1,3 +1,1 @@
-cd scripts
-go run all-sets-plays.go > ../all-sets.txt
-cd ..
+python scripts/all_sets_plays.py > all-sets.txt
