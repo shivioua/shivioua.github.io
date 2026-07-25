@@ -40,6 +40,7 @@ if hasattr(sys.stderr, "reconfigure"):
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ALL_SETS_MD = os.path.join(SCRIPT_DIR, "..", "all-sets.md")
+ALL_SETS_SORTED_MD = os.path.join(SCRIPT_DIR, "..", "all-sets-sorted.md")
 
 debug_on = True
 
@@ -316,15 +317,16 @@ def format_plays(n):
     return str(n)
 
 
-def print_sorted_sets(path):
-    with open(path, encoding="utf-8") as f:
+def update_all_sets_sorted_md(total_plays, total_sets):
+    """Read updated all-sets.md, sort entries by plays descending, write all-sets-sorted.md."""
+    re_plays = re.compile(r"([0-9]+)\U0001f3a7")
+    re_link = re.compile(r"\((https?://[^\s)]+)\)")
+
+    with open(ALL_SETS_MD, encoding="utf-8") as f:
         lines = f.read().splitlines()
 
-    re_plays = re.compile(r"([0-9]+)🎧")
-    re_link = re.compile(r"\((https?://[^\s)]+)\)")
     entries = []
     seen_links = set()
-
     for ln in lines:
         trim = ln.strip()
         if not trim.startswith("* "):
@@ -344,15 +346,24 @@ def print_sorted_sets(path):
             seen_links.add(link)
 
     entries.sort(key=lambda e: e["plays"], reverse=True)
-    for e in entries:
-        print(e["line"])
+
+    with open(ALL_SETS_SORTED_MD, "w", encoding="utf-8") as f:
+        f.write("![Shivioua - All Sets](./all-sets.jpg)\n\n")
+        f.write("# All Sets (DJ Mixes)\n\n")
+        f.write("Order by - [Newest](./all-sets.md) :: **[Top Listens](./all-sets-sorted.md)**\n\n")
+        for e in entries:
+            f.write(e["line"] + "\n")
+        f.write(f"\nTotal plays: **{format_plays(total_plays)}\U0001f3a7**  \n")
+        f.write(f"Total amount of sets: **{total_sets}\U0001f3b6**  \n")
+        f.write("\nThank you for listening \U0001f60d\n\n")
+        f.write("----\n\n")
+        f.write("[Back to main page](https://shivioua.github.io)\n\n")
+        f.write("----\n")
+
+    debug_log("[DEBUG] Updated %s\n", ALL_SETS_SORTED_MD)
 
 
 def main():
-    if len(sys.argv) > 1 and sys.argv[1] == "sort":
-        print_sorted_sets(ALL_SETS_MD)
-        return
-
     debug_log("[DEBUG] Starting all_sets_plays.py\n")
 
     re_set_entry = re.compile(r"^\* \[(.+?)\]\((https?://[^\s)]+)\)")
@@ -406,7 +417,10 @@ def main():
     with open(ALL_SETS_MD, "w", encoding="utf-8") as f:
         f.writelines(new_lines)
 
+    update_all_sets_sorted_md(total_plays, total_sets)
+
     print(f"Zaktualizowano: {ALL_SETS_MD}")
+    print(f"Zaktualizowano: {ALL_SETS_SORTED_MD}")
     print(f"Total plays: {format_plays(total_plays)}🎧, Total sets: {total_sets}🎶")
 
 
