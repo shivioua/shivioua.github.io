@@ -1,53 +1,48 @@
-# generate_set_video.py
+# `generate_set_video.py`
 
-Generates an MP4 video file from a DJ set's audio and cover/slide images, ready for upload to YouTube.
+Creates an MP4 for a DJ set from its audio, cover art, and timestamped per-track images. Each track scene displays the project title and current track while applying a slow zoom and pan profile. An optional cross-dissolve blends adjacent scenes. The script renders temporary video chunks with FFmpeg, merges them with the original audio, and removes its temporary files afterward.
+
+It prepares a video file for a later upload; it does not upload, schedule, or publish anything on YouTube. The `youtube` metadata is descriptive only.
 
 ## Requirements
 
-- Python 3.10+
-- [ffmpeg](https://ffmpeg.org/) in PATH or specified via `ffmpeg_path`
-- PyYAML (`pip install pyyaml`) when using `.yaml`/`.yml` metadata files
+- Python 3.10 or later.
+- FFmpeg, available on `PATH` or configured with `ffmpeg_path` / `--ffmpeg-path`.
+- Mutagen: `pip install mutagen` (used to read the MP3 duration).
+- PyYAML: `pip install pyyaml` for `.yaml` or `.yml` metadata. JSON metadata uses the standard library.
+- A valid font file for FFmpeg `drawtext`, configured using `font_path`.
+
+For Intel Quick Sync intermediate encoding, FFmpeg must also be built with the `h264_qsv` encoder and run on a machine with a working QSV device. The final cross-fade merge is encoded with `libx264`.
 
 ## Usage
 
+From the repository root:
+
+```powershell
+python scripts/generate_set_video.py path\to\set-metadata.yaml
 ```
-python generate_set_video.py <metadata> [options]
-```
 
-| Argument             | Description                                                                                   |
-|----------------------|-----------------------------------------------------------------------------------------------|
-| `metadata`           | Path to a `.yaml`, `.yml` or `.json` metadata file                                            |
-| `--ffmpeg-path PATH` | Path to the ffmpeg executable. Overrides `ffmpeg_path` from metadata                          |
-| `--images-dir DIR`   | Directory with additional slide images. Overrides `images_dir` from metadata                  |
-| `--cover-duration N` | Seconds to display the cover image (slideshow mode). Overrides `cover_duration` from metadata |
-| `--slide-duration N` | Seconds to display each slide image. Overrides `slide_duration` from metadata                 |
-| `--print-command`    | Print the ffmpeg command without running it                                                   |
+Supported command-line options:
 
-## Metadata file
+| Option               | Description                                          |
+|----------------------|------------------------------------------------------|
+| `--ffmpeg-path PATH` | Override `ffmpeg_path` from the metadata.            |
+| `--print-command`    | Print the planned FFmpeg commands without rendering. |
 
-All configuration is stored in a YAML (or JSON) file alongside the set files.
+Other paths and rendering options are configured in the metadata file. The current script does not accept `--images-dir`, `--cover-duration`, or `--slide-duration`; images are selected per track in `tracklist`.
 
-### Full example
+## Metadata Example
 
 ```yaml
 project: Progressive Awake
-title: 7 months of dream (July 2009)
-slug: 7-months-of-dream-dont-want-to-wake-up-july-2009
-date: 2009-07-15
+title: Example set (October 2026)
+set_type: progressive_awake
+font_path: "C:\\Windows\\Fonts\\arial.ttf"
 
-audio_path: C:\Users\you\Sets\2009-07-15\Shivioua - 7 Months Of Dream.mp3
-cover_path:  C:\Users\you\Sets\2009-07-15\Shivioua - 7 Months Of Dream.jpg
-
-# --- Slideshow (optional) ---
-images_dir: C:\Users\you\Sets\2009-07-15\photos
-cover_duration: 15   # seconds the cover is shown first (default: 10)
-slide_duration: 8    # seconds per slide image (default: 10)
-
-# --- Output ---
-# output_path: explicit output file path (optional)
-output_dir: C:\Users\you\Sets\output   # output directory (optional, defaults to audio_path dir)
+audio_path: "C:\\Sets\\Example\\mix.mp3"
+cover_path: "C:\\Sets\\Example\\cover.jpg"
+output_path: "C:\\Sets\\Example\\mix.mp4" # optional
 output_audio_bitrate: 192k
-
 ffmpeg_path: "C:\\Apps\\ffmpeg\\bin\\ffmpeg.exe"
 
 video:
@@ -55,109 +50,55 @@ video:
   height: 1080
   crf: 20
   preset: medium
+  encoder: libx264
+  intermediate_scale: 8000
+  transition_duration: 2.5 # seconds; set to 0 for hard cuts
 
 youtube:
+  title: "Progressive Awake - Example set (October 2026)"
   privacy: private
-  publish_at:        # ISO 8601 datetime, leave empty to skip scheduling
-  # title:           # explicit YouTube title; derived from project + title if omitted
+  publish_at:
 
 description: |
-  Your set description here.
+  Description prepared for a later YouTube upload.
 
 tracklist:
-  - artist - track title
-  - artist - track title
+  - time: "00:00"
+    track_name: "Artist - First track"
+    image: "C:\\Sets\\Example\\slides\\01.jpg"
+  - time: "05:30"
+    track_name: "Artist - Second track"
+    image: "C:\\Sets\\Example\\slides\\02.jpg"
 ```
 
-### Field reference
+`audio_path` and `cover_path` must exist. A track must be a mapping with `time` and `track_name`; `image` is optional and falls back to `cover_path`. Timestamps use `MM:SS` or `HH:MM:SS`, should be in ascending order, and determine each scene's duration up to the next track. The last scene runs to the audio duration. Track image paths are passed to FFmpeg during rendering, so check that they exist before starting a long render.
 
-#### Required
+## Metadata Fields
 
-| Field        | Description                                      |
-|--------------|--------------------------------------------------|
-| `audio_path` | Path to the source MP3/audio file                |
-| `cover_path` | Path to the cover image (always the first frame) |
+| Field                                                                          | Default / behavior                                                                                        |
+|--------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `project`, `title`                                                             | Used to derive the on-screen project title and default output filename.                                   |
+| `youtube.title`                                                                | Optional explicit title; otherwise `project - title` is used.                                             |
+| `audio_path`, `cover_path`                                                     | Required existing audio and cover files. Audio duration is read from the MP3.                             |
+| `tracklist`                                                                    | Required non-empty list of mappings with `time` and `track_name`; optional `image` per track.             |
+| `font_path`                                                                    | Font passed to FFmpeg `drawtext`. Relative paths resolve from the `scripts` directory.                    |
+| `set_type`                                                                     | Motion profile: `progressive_awake`, `quantum_energy`, or `fresh_dance`; defaults to `progressive_awake`. |
+| `output_path`                                                                  | Optional explicit MP4 path; takes precedence over `output_dir`.                                           |
+| `output_dir`                                                                   | Optional output directory; defaults to the audio file's directory.                                        |
+| `output_audio_bitrate`                                                         | AAC output bitrate; defaults to `video.audio_bitrate` or `320k`.                                          |
+| `ffmpeg_path`                                                                  | FFmpeg executable; defaults to `ffmpeg`.                                                                  |
+| `video.width`, `video.height`                                                  | Output dimensions; default to 1920 x 1080.                                                                |
+| `video.crf`, `video.preset`                                                    | Encoder quality and preset; defaults to `22` and `fast`.                                                  |
+| `video.encoder`                                                                | Intermediate chunk encoder: `libx264` by default, or `h264_qsv`.                                          |
+| `video.intermediate_scale`                                                     | Internal image-processing width; defaults to 8000.                                                        |
+| `video.transition_duration`                                                    | Cross-dissolve duration in seconds; defaults to 0 (hard cuts).                                            |
+| `description`, `tags`, `date`, `slug`, `youtube.privacy`, `youtube.publish_at` | Descriptive or downstream workflow metadata; not uploaded to YouTube by this script.                      |
 
-#### Output
+## Rendering Behavior
 
-| Field                  | Default   | Description                                                                 |
-|------------------------|-----------|-----------------------------------------------------------------------------|
-| `output_path`          | derived   | Explicit output `.mp4` path. Takes priority over `output_dir`               |
-| `output_dir`           | audio dir | Directory for the generated MP4. Filename is derived from the YouTube title |
-| `output_audio_bitrate` | `192k`    | AAC audio bitrate in the output video                                       |
+- The source image is scaled and cropped to fill the output aspect ratio, then rendered with a brand-specific zoom/pan profile. Track and project titles are overlaid on the video.
+- Each image scene is rendered as a temporary chunk. With a positive `transition_duration`, adjacent chunks are joined with an FFmpeg cross-dissolve and the final video is re-encoded with `libx264`. With no transition, chunks are concatenated with stream copy before the audio is added.
+- The result uses AAC audio and ends at the shorter of the rendered video and source audio (`-shortest`). The default output filename is derived from the YouTube title, with characters invalid in filenames replaced by hyphens.
+- `--print-command` is useful for reviewing FFmpeg arguments and resolved paths before rendering. It does not validate that every track image is readable by FFmpeg.
 
-#### Slideshow
-
-| Field            | Default | Description                                                                            |
-|------------------|---------|----------------------------------------------------------------------------------------|
-| `images_dir`     | —       | Directory of additional slide images. If absent, the cover loops for the full duration |
-| `cover_duration` | `10`    | Seconds the cover image is displayed at the start                                      |
-| `slide_duration` | `10`    | Seconds each image from `images_dir` is displayed                                      |
-
-Supported image formats: `.jpg`, `.jpeg`, `.png`, `.webp`, `.bmp`, `.tiff`, `.tif`, `.gif`.  
-Images in `images_dir` are sorted alphabetically and played in that order after the cover.
-
-#### Video encoding
-
-Nested under the `video` key:
-
-| Field    | Default  | Description                                               |
-|----------|----------|-----------------------------------------------------------|
-| `width`  | `1920`   | Output frame width                                        |
-| `height` | `1080`   | Output frame height                                       |
-| `crf`    | `20`     | libx264 CRF quality (lower = better quality, larger file) |
-| `preset` | `medium` | libx264 encoding preset (`ultrafast` … `veryslow`)        |
-
-#### YouTube metadata
-
-Nested under the `youtube` key:
-
-| Field        | Description                                                                |
-|--------------|----------------------------------------------------------------------------|
-| `title`      | Explicit YouTube title. If omitted, derived as `"<project> - <title>"`     |
-| `privacy`    | Intended privacy setting (informational, not applied automatically)        |
-| `publish_at` | Intended scheduled publish time (informational, not applied automatically) |
-
-#### Other
-
-| Field         | Default  | Description                                                     |
-|---------------|----------|-----------------------------------------------------------------|
-| `ffmpeg_path` | `ffmpeg` | Path to the ffmpeg executable                                   |
-| `project`     | —        | Project/brand name, used to derive the YouTube title            |
-| `title`       | —        | Set title, used to derive the YouTube title and output filename |
-| `description` | —        | Set description (informational)                                 |
-| `tracklist`   | —        | List of tracks (informational)                                  |
-
-## Output filename
-
-When `output_path` is not set, the filename is derived from the YouTube title with characters illegal in filenames replaced by `-`. For example:
-
-```
-Progressive Awake - 7 months of dream (July 2009).mp4
-```
-
-## Modes of operation
-
-### Single-image mode (no `images_dir`)
-
-The cover image loops as a still frame for the full duration of the audio:
-
-```
-ffmpeg -loop 1 -i cover.jpg -i audio.mp3 ... -shortest output.mp4
-```
-
-### Slideshow mode (`images_dir` provided)
-
-A temporary concat list is generated and passed to ffmpeg's concat demuxer:
-
-```
-file '/path/to/cover.jpg'
-duration 15
-file '/path/to/photos/01.jpg'
-duration 8
-file '/path/to/photos/02.jpg'
-duration 8
-...
-```
-
-The video ends when the audio ends (`-shortest`), so the last image may be cut short if the audio finishes before all slides are shown, or the last slide will hold if the audio outlasts the images.
+For image dimensions and missing artwork, run [`check_image_quality.py`](check_image_quality.md) against the same metadata before rendering.
