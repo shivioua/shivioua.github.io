@@ -1,6 +1,8 @@
 # all_sets_plays.py
 # Reads all-sets.md, fetches play counts from Mixcloud, SoundCloud, and YouTube,
 # then updates the play counts in all-sets.md in place.
+# Platform links are read from local set Markdown files in sibling repositories,
+# not from published GitHub Pages.
 #
 # Usage:
 #   python scripts/all_sets_plays.py          # update all-sets.md with fresh play counts
@@ -29,6 +31,7 @@ import sys
 import json
 import time
 import base64
+from pathlib import Path
 import urllib.parse
 import urllib.request
 
@@ -41,6 +44,7 @@ if hasattr(sys.stderr, "reconfigure"):
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ALL_SETS_MD = os.path.join(SCRIPT_DIR, "..", "all-sets.md")
 ALL_SETS_SORTED_MD = os.path.join(SCRIPT_DIR, "..", "all-sets-sorted.md")
+REPOSITORIES_DIR = Path(SCRIPT_DIR).resolve().parent.parent
 
 debug_on = True
 
@@ -114,16 +118,23 @@ def debug_log(fmt, *args):
         print(fmt % args, end="", file=sys.stderr)
 
 
-def fetch_url(url):
-    debug_log("[DEBUG] Fetching URL: %s\n", url)
+def read_set_page(url):
+    """Read the local Markdown file corresponding to a GitHub Pages set URL."""
+    parsed = urllib.parse.urlsplit(url)
+    if parsed.scheme not in ("http", "https") or parsed.netloc != "shivioua.github.io":
+        raise ValueError(f"Unsupported set URL: {url}")
+    relative_path = Path(urllib.parse.unquote(parsed.path).lstrip("/"))
+    if relative_path.suffix != ".html":
+        raise ValueError(f"Expected an .html set URL: {url}")
+    filename = (REPOSITORIES_DIR / relative_path.with_suffix(".md")).resolve()
+    if not filename.is_relative_to(REPOSITORIES_DIR):
+        raise ValueError(f"Set URL points outside the local repositories: {url}")
+    debug_log("[DEBUG] Reading local set file: %s\n", filename)
     try:
-        with urllib.request.urlopen(url) as resp:
-            body = resp.read().decode("utf-8", errors="replace")
-        debug_log("[DEBUG] Fetched %d bytes from %s\n", len(body), url)
-        return body
-    except Exception as e:
-        debug_log("[DEBUG] Error fetching URL %s: %v\n", url, e)
-        return None
+        return filename.read_text(encoding="utf-8")
+    except (OSError, UnicodeError) as e:
+        debug_log("[ERROR] Cannot read local set file %s: %s\n", filename, e)
+        raise
 
 
 def extract_set_links(filename):
@@ -292,14 +303,14 @@ def get_youtube_plays(yt_url):
 
 def find_external_links(page):
     mixcloud = soundcloud = youtube = ""
-    m = re.search(r'https://www\.mixcloud\.com/[^"]+', page)
+    m = re.search(r"""https://www\.mixcloud\.com/[^\s"'<>()[\]]+""", page)
     if m:
         mixcloud = m.group(0)
         debug_log("[DEBUG] Found Mixcloud link: %s\n", mixcloud)
-    m = re.search(r'https://soundcloud\.com/[^"]+', page)
+    m = re.search(r"""https://soundcloud\.com/[^\s"'<>()[\]]+""", page)
     if m:
         soundcloud = m.group(0)
-    m = re.search(r'https://(?:www\.)?youtube\.com/[^"]+|https://youtu\.be/[^"]+', page)
+    m = re.search(r"""https://(?:(?:www\.)?youtube\.com/|youtu\.be/)[^\s"'<>()[\]]+""", page)
     if m:
         youtube = m.group(0)
     debug_log(
@@ -391,7 +402,7 @@ def main():
             processed.add(link)
             total_sets += 1
 
-            page = fetch_url(link)
+            page = read_set_page(link)
             plays = 0
             if page:
                 mixcloud, soundcloud, youtube = find_external_links(page)
