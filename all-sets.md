@@ -4,7 +4,8 @@
 
 Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 
-* [**Rolls & Bass (December 2025)**](https://shivioua.github.io/quantum-energy/rolls-and-bass-december-2025.html) _//_ 277🎧
+* [**Moon Trip B2B (August 2026)**](https://shivioua.github.io/progressive-awake/moon-trip-b2b-august-2026.html) _//_ 21🎧
+* [Rolls & Bass (December 2025)](https://shivioua.github.io/quantum-energy/rolls-and-bass-december-2025.html) _//_ 277🎧
 * [Freedom (October 2025)](https://shivioua.github.io/fresh-dance-music/freedom-october-2025.html) _//_ 51🎧
 * [Backstreet Bar (August 2024)](https://shivioua.github.io/progressive-awake/backstreet-bar-august-2024.html) _//_ 135🎧
 * [Poljica (August 2023)](https://shivioua.github.io/progressive-awake/poljica-august-2023.html) _//_ 587🎧
@@ -29,7 +30,7 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Beachball (July 2018)](https://shivioua.github.io/fresh-dance-music/beachball-july-2018.html) _//_ 31🎧
 * [New Time, New Place (June 2018)](https://shivioua.github.io/progressive-awake/new-time-new-place-june-2018.html) _//_ 33🎧
 * [Playpool (September 2016)](https://shivioua.github.io/progressive-awake/playpool-september-2016.html) _//_ 94🎧
-* [Somebody New (November 2015)](https://shivioua.github.io/fresh-dance-music/somebody-new-november-2015.html) _//_ 43🎧
+* [Somebody New (November 2015)](https://shivioua.github.io/fresh-dance-music/somebody-new-november-2015.html) _//_ 44🎧
 * [Uncharted Waters (June 2015)](https://shivioua.github.io/progressive-awake/uncharted-waters-june-2015.html) _//_ 41🎧
 * [Cave (January 2015)](https://shivioua.github.io/fresh-dance-music/cave-january-2015.html) _//_ 52🎧
 * [Deanery No. 161 (May 2014)](https://shivioua.github.io/fresh-dance-music/deanery-no-161-may-2014.html) _//_ 52🎧
@@ -68,7 +69,7 @@ Order by - **[Newest](./all-sets.md)** :: [Top Listens](./all-sets-sorted.md)
 * [Primrose (April 2008)](https://shivioua.github.io/fresh-dance-music/primrose-april-2008.html) _//_ 200🎧
 
 Total plays: **6.2k🎧**  
-Total amount of sets: **62🎶**  
+Total amount of sets: **63🎶**  
 
 Thank you for listening 😍
 
